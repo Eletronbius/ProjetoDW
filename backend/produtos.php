@@ -4,9 +4,10 @@ namespace App\produtos;
 require "../vendor/autoload.php";
 
 use App\Controller\ProdutoController;
-
+use App\Controller\AutorizadoController;
 $users = new ProdutoController();
-
+$autorizado= new AutorizadoController();
+$autorizado->autorizado();
 $body = json_decode(file_get_contents('php://input'), true);
 $id=isset($_GET['id'])?$_GET['id']:'';
 switch($_SERVER["REQUEST_METHOD"]){

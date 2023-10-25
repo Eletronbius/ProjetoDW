@@ -64,4 +64,12 @@ class UserController {
         return false;
         
     }
+    public function generateToken() {
+        return bin2hex(openssl_random_pseudo_bytes(16));
+        //return $this->tokens[rand(1,12)];
+    }
+    public function isValidToken($token) {
+        $resultado= $this->db->select('token', ['token' => $token]);
+        return $resultado;
+    }
 }
