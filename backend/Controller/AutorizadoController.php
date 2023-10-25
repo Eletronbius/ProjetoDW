@@ -32,7 +32,7 @@ class AutorizadoController{
 
   }
   public function verificaOrigem(){
-    if(!in_array($_SERVER['HTTP_ORIGIN'], $origesPermitidas)){
+    if(!in_array($_SERVER['HTTP_ORIGIN'], $this->origesPermitidas)){
       echo json_encode(['error' => 'Acesso não autorizado'], 403);
       exit;
   }
