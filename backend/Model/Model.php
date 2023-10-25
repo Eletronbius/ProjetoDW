@@ -40,6 +40,7 @@ use PDOException;
 
  public function __construct() {
      $this->connect();
+
  }
 
  private function connect() {
@@ -141,26 +142,28 @@ public function delete($table, $conditions) {
         }
         return $stmt->execute();
     }
-    public function dropTabelaEndereco(){
+    public function criarView(){
 
-        $sql="DROP TABLE endereco";
+        $sql="
+        CREATE VIEW produtos_por_usuario AS
+        SELECT u.id, u.nome, COUNT(v.id_produto) as quantidade_produtos
+        FROM users u
+        LEFT JOIN vendas v ON u.id = v.id_usuario
+        GROUP BY u.id";
 
         $this->conn->exec($sql);
 
     }
-    public function criarTabelaEndereco(){
+    public function criarTabela(){
 
         $sql="
-        CREATE TABLE IF NOT EXISTS endereco(
-            id INTEGER PRIMARY KEY AUTOINCREMENT,
-            cep TEXT NOT NULL,
-            rua TEXT NOT NULL,
-            bairro TEXT NOT NULL,
-            cidade TEXT NOT NULL,
-            uf TEXT NOT NULL,
-            iduser INTEGER,
-            FOREIGN KEY (iduser) REFERENCES users(id) ON DELETE CASCADE
-            )";
+        CREATE TABLE IF NOT EXISTS vendas (
+            id_usuario INTEGER,
+            id_produto INTEGER,
+            data_cadastro DATE,
+            FOREIGN KEY (id_usuario) REFERENCES usuario(id),
+            FOREIGN KEY (id_produto) REFERENCES produtos(id)
+        );";
 
         $this->conn->exec($sql);
 

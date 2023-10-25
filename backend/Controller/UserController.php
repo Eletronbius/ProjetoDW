@@ -17,7 +17,6 @@ class UserController {
         $this->db = new Model();
         $this->usuarios = new Usuario();
         $this->enderecos = new Endereco();
-        $this->db->criarTabelaEndereco();
 
     }
     public function select(){

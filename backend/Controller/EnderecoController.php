@@ -7,7 +7,7 @@ use App\Model\Model;
 class EnderecoController {
 
     private $db;
-    private $endreco;
+    private $endereco;
     public function __construct($endereco) {
         $this->db = new Model();
         $this->endereco = $endereco;

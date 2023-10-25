@@ -84,3 +84,8 @@ a {
     margin-left: 10px;
 
 }
+.myChart{
+
+    width:100%;
+    max-width:600px
+}
