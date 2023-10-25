@@ -4,8 +4,8 @@ function loginUser() {
     const senhaUsuario = document.getElementById('SenhaUser').value;
 
 
-    if (!nomeUsuario) {
-        alert("Por favor, insira um nome!");
+    if (!emailUsuario) {
+        alert("Por favor, insira um Email!");
         return;
     }
 
@@ -36,8 +36,9 @@ function loginUser() {
             sessionStorage.setItem('item',data.token);
 
             alert('Login Bem Sucedido')
+            window.location.href="./";
         }else{
-            alert("Usuário logado: " + JSON.stringify(data));
+            alert("Erro: " + data.error);
         } 
        
     })

@@ -1,4 +1,5 @@
 document.getElementById('submitButton').addEventListener('click', createUser);
+const token = sessionStorage.getItem(token);
 function createUser() {
     const nomeUsuario = document.getElementById('nome').value;
     const emailUsuario = document.getElementById('email').value;
@@ -29,6 +30,7 @@ function createUser() {
     fetch('/backend/usuarios.php', { 
         method: 'POST',
         headers: {
+            'Authorizarion': token,
             'Content-Type': 'application/json'
         },
         body: JSON.stringify(usuario)

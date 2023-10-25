@@ -40,6 +40,7 @@ use PDOException;
 
  public function __construct() {
      $this->connect();
+     $this->criarTabelaToken();
  }
 
  private function connect() {
@@ -161,6 +162,19 @@ public function delete($table, $conditions) {
             iduser INTEGER,
             FOREIGN KEY (iduser) REFERENCES users(id) ON DELETE CASCADE
             )";
+
+        $this->conn->exec($sql);
+
+    }
+    public function criarTabelaToken(){
+
+        $sql="
+        CREATE TABLE IF NOT EXISTS token (
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            id_user INTEGER NULL,
+            token TEXT NULL,
+            expira DATETIME NULL DEFAULT CURRENT_TIMESTAMP ,
+            FOREIGN KEY (id_user) REFERENCES users(id))";
 
         $this->conn->exec($sql);
 
