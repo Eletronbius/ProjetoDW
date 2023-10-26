@@ -45,7 +45,7 @@ if (isset($data['email']) && isset($data['senha'])) {
             ]
         ];
         
-
+            
         $jwt = JWT::encode($payload, $secretKey, $algoritimo);
         $model->insert('token', ['id_user' => $user->getId(),'token'=> $jwt]);
         echo json_encode(['token' => $jwt]);
