@@ -33,7 +33,7 @@ function loginUser() {
     })
     .then(data => {
         if(data.token){
-            sessionStorage.setItem('item',data.token);
+            sessionStorage.setItem('token',data.token);
 
             alert('Login Bem Sucedido')
             window.location.href="./";

@@ -12,6 +12,12 @@ $algoritimo='HS256';
 $model = new Model();
 $user = new Usuario();
 
+header('Content-Type: application/json');
+header('Access-Control-Allow-Origin: * ' );
+header('Access-Control-Allow-Methods: OPTIONS, GET, POST, PUT, DELETE');
+header('Access-Control-Allow-Headers: Content-Type');
+header('Cache-Control: no-cache, no-store, must-revalidate');
+
 $usercontroller = new UserController();
 
 $secretKey = $usercontroller->generateToken();
@@ -47,7 +53,6 @@ if (isset($data['email']) && isset($data['senha'])) {
         
             
         $jwt = JWT::encode($payload, $secretKey, $algoritimo);
-        $model->insert('token', ['id_user' => $user->getId(),'token'=> $jwt]);
         echo json_encode(['token' => $jwt]);
     } else {
         http_response_code(401);
