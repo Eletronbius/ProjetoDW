@@ -6,6 +6,9 @@ use App\Model\Model;
 use App\Model\Usuario;
 use App\Model\Endereco;
 use App\Controller\EnderecoController;
+use Firebase\JWT\JWT;
+use Firebase\JWT\Key;
+use Exception;
 
 class UserController {
 
@@ -64,12 +67,16 @@ class UserController {
         return false;
         
     }
-    public function generateToken() {
-        return bin2hex(openssl_random_pseudo_bytes(16));
-        //return $this->tokens[rand(1,12)];
-    }
-    public function isValidToken($token) {
-        $resultado= $this->db->select('token', ['token' => $token]);
-        return $resultado;
+
+    public function validarToken($token){
+        
+        $key = "9b426114868f4e2179612445148c4985429e5138758ffeed5eeac1d1976e7443";
+        $algoritimo = 'HS256';
+        try {
+            $decoded = JWT::decode($token, new Key($key, $algoritimo));
+            return ['status' => true, 'message' => 'Token válido!', 'data' => $decoded];
+        } catch(Exception $e) {
+            return ['status' => false, 'message' => 'Token inválido! Motivo: ' . $e->getMessage()];
+        }
     }
 }
