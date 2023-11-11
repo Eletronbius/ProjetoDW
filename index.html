@@ -3,12 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="js/TokenCheck.js"></script>
     <title>Formulário de Usuário</title>
-    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
-    <div>
-        <h1>Escolha a Opção</h1>
+    <div class="card">
+        <h1>Escolha a Opção:</h1>
         <a href="LoginUser.html">Login Usuario</a>
         <a href="criaruser.html">Cadastrar Usuario</a>
         <a href="todosuser.html">Listar todos Usuarios</a>
@@ -19,13 +20,6 @@
         <a href="criarvenda.html">Registra Usuário -> Produto</a>
         <a href="grafico.html">Gráfico</a>
     </div>
-    <script>
-        window.onload = function() {
-            fetch('/backend/token')
-                .then(response => response.json())
-                .then(data => localStorage.setItem('token', data.token));
-        }
-        
-    </script>
+
 </body>
 </html>

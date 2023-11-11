@@ -1,6 +1,6 @@
 {
-    "name": "flash/provaweb",
-    "description": "prova de desenvolvimento web",
+    "name": "projetodw",
+    "description": "projeto aula Desenvolvimento Web",
     "license": "livre",
     "autoload": {
         "psr-4": {

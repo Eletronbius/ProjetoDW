@@ -12,9 +12,15 @@ $algoritimo='HS256';
 $model = new Model();
 $user = new Usuario();
 
-$usercontroller = new UserController();
+header('Content-Type: application/json');
+header('Access-Control-Allow-Origin: * ' );
+header('Access-Control-Allow-Methods: OPTIONS, GET, POST, PUT, DELETE');
+header('Access-Control-Allow-Headers: Content-Type');
+header('Cache-Control: no-cache, no-store, must-revalidate');
 
-$secretKey = $usercontroller->generateToken();
+$usercontroller = new UserController();
+$key= "9b426114868f4e2179612445148c4985429e5138758ffeed5eeac1d1976e7443";
+
 $data = json_decode(file_get_contents('php://input'), true);
 switch($_SERVER["REQUEST_METHOD"]){
 case 'POST':
@@ -46,7 +52,7 @@ if (isset($data['email']) && isset($data['senha'])) {
         ];
         
             
-        $jwt = JWT::encode($payload, $secretKey, $algoritimo);
+        $jwt = JWT::encode($payload, $key, $algoritimo);
         echo json_encode(['token' => $jwt]);
     } else {
         http_response_code(401);
@@ -57,4 +63,16 @@ if (isset($data['email']) && isset($data['senha'])) {
     echo json_encode(['error' => 'Requisição inválida.']);
 }
 break;
+    case 'GET':
+        $headers = getallheaders();
+        $token = $headers['Authorization'] ?? null;
+        $usuariosController = new UserController();
+        $validationResponse = $usuariosController->validarToken($token);
+        if ($token === null || !$validationResponse['status']) {
+            echo json_encode(['status' => false, 'message' => $validationResponse['message']]);
+            exit;
+        }
+        echo json_encode(['status' => true, 'message' => 'Token válido']);
+        exit;
+    break;
 }
