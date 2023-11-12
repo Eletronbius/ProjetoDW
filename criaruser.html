@@ -1,61 +1,63 @@
 <!DOCTYPE html>
 <html lang="pt_BR">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Formulário de Usuário</title>
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
     <script src="https://cdn.tailwindcss.com"></script>
-</head>
-<body class="flex flex-row h-screen items-center justify-center bg-gray-700">
+  </head>
+  <body class="flex flex-row h-screen items-center justify-center bg-gray-700">
+    
     <a href="../" class="transition duration-200 text-slate-100 absolute top-0 left-0 bg-violet-500 px-8 py-2 mt-2 ml-2 rounded-lg hover:bg-violet-600 hover:shadow-xl hover:shadow-violet-600/50">Voltar</a>
-    <form id="userForm" class="w-fit flex flex-col items-center bg-gray-50 p-8 rounded-lg">
-        <div class="flex flex-row items-center mt-8">
-            <label for="Nome" class="text-slate-950 text-lg subpixel-antialiased">Nome:</label>
-            <input type="text" id="nome" name="nome" class="ml-2 transition-colors duration-100 outline outline-1 outline-slate-800/80 p-1 rounded-md focus:outline-1 focus:outline-violet-700 hover:bg-slate-400/10" required><br>
+    
+    <form id="userForm" class="transition duration-200 overflow-y-auto h-96 w-fit flex flex-col items-center bg-gray-50 p-8 rounded-lg">
+      
+        <p class="p-2 text-4xl font-bold underline decoration-violet-500 underline-offset-4 subpixel-antialiased">Criar Usuário</p>
+      <div class="flex flex-row items-center mt-8">
+        <label for="Nome" class="text-slate-950 text-lg subpixel-antialiased">Nome:</label>
+        <input type="text" id="nome" name="nome" class="ml-2 transition-colors duration-100 outline outline-1 outline-slate-800/80 p-1 rounded-md focus:outline-1 focus:outline-violet-700 hover:bg-slate-400/10" required /><br />
+      </div>
+      <div class="flex flex-row items-center my-4">
+        <label for="Email" class="text-slate-950 text-lg subpixel-antialiased">Email:</label>
+        <input type="text" id="email" name="email" class="ml-2 transition-colors duration-100 outline outline-1 outline-slate-800/80 p-1 rounded-md focus:outline-1 focus:outline-violet-700 hover:bg-slate-400/10" required /><br />
+      </div>
+      <div class="flex flex-row items-center mb-8">
+        <label for="Senha" class="text-slate-950 text-lg subpixel-antialiased">Senha:</label>
+        <input type="text" id="senha" name="senha" class="ml-2 transition-colors duration-100 outline outline-1 outline-slate-800/80 p-1 rounded-md focus:outline-1 focus:outline-violet-700 hover:bg-slate-400/10" required /><br />
+      </div>
+      <details>
+        <summary>Endereço</summary>
+        <div class="flex flex-col items-center">
+          <label class="text-slate-950 text-lg subpixel-antialiased">Cep: 
+            <input name="cep" type="text" id="cep" value="" size="10" maxlength="9" onblur="pesquisacep(this.value);" class="text-base ml-2 transition-colors duration-100 outline outline-1 outline-slate-800/80 p-1 rounded-md focus:outline-1 focus:outline-violet-700 hover:bg-slate-400/10" /></label><br />
         </div>
-        <div class="flex flex-row items-center my-4">
-            <label for="Email" class="text-slate-950 text-lg subpixel-antialiased">Email:</label>
-            <input type="text" id="email" name="email" class="ml-2 transition-colors duration-100 outline outline-1 outline-slate-800/80 p-1 rounded-md focus:outline-1 focus:outline-violet-700 hover:bg-slate-400/10" required><br>
+        <div class="flex flex-col items-start">
+          <label class="text-slate-950 text-lg subpixel-antialiased">Rua: 
+            <input name="rua" disabled type="text" id="rua" size="60" class="text-base ml-2 transition-colors duration-100 outline outline-1 outline-slate-800/80 p-1 rounded-md focus:outline-1 focus:outline-violet-700 hover:bg-slate-400/10" /></label><br />
         </div>
-        <div class="flex flex-row items-center mb-8">
-            <label for="Senha" class="text-slate-950 text-lg subpixel-antialiased">Senha:</label>
-            <input type="text" id="senha" name="senha" class="ml-2 transition-colors duration-100 outline outline-1 outline-slate-800/80 p-1 rounded-md focus:outline-1 focus:outline-violet-700 hover:bg-slate-400/10" required><br>
+        <div class="flex flex-col items-start">
+          <label class="text-slate-950 text-lg subpixel-antialiased">Bairro: 
+            <input name="bairro" disabled type="text" id="bairro" size="40" class="text-base ml-2 transition-colors duration-100 outline outline-1 outline-slate-800/80 p-1 rounded-md focus:outline-1 focus:outline-violet-700 hover:bg-slate-400/10" /></label><br />
         </div>
-        <details>
-            <summary>Endereço</summary>
-            <div class="flex flex-col items-center">                
-                <label class="text-slate-950 text-lg subpixel-antialiased">Cep:
-                    <input name="cep" type="text" id="cep" value="" size="10" maxlength="9"
-                           onblur="pesquisacep(this.value);" class="ml-2 transition-colors duration-100 outline outline-1 outline-slate-800/80 p-1 rounded-md focus:outline-1 focus:outline-violet-700 hover:bg-slate-400/10" /></label><br />
-            </div>
-            <div class="flex flex-col items-center">
-                <label class="text-slate-950 text-lg subpixel-antialiased">Rua:
-                <input name="rua" type="text" id="rua" size="60" class="ml-2 transition-colors duration-100 outline outline-1 outline-slate-800/80 p-1 rounded-md focus:outline-1 focus:outline-violet-700 hover:bg-slate-400/10" /></label><br />
-            </div>
-            <div class="flex flex-col items-center">
-                <label class="text-slate-950 text-lg subpixel-antialiased">Bairro:
-                <input name="bairro" type="text" id="bairro" size="40" class="ml-2 transition-colors duration-100 outline outline-1 outline-slate-800/80 p-1 rounded-md focus:outline-1 focus:outline-violet-700 hover:bg-slate-400/10" /></label><br />
-            </div>
-            <div class="flex flex-col items-center">
-                <label class="text-slate-950 text-lg subpixel-antialiased">Cidade:
-                <input name="cidade" type="text" id="cidade" size="40" class="ml-2 transition-colors duration-100 outline outline-1 outline-slate-800/80 p-1 rounded-md focus:outline-1 focus:outline-violet-700 hover:bg-slate-400/10" /></label><br />
-            </div>
-            <div class="flex flex-col items-center">
-                <label class="text-slate-950 text-lg subpixel-antialiased">Estado:
-                <input name="uf" type="text" id="uf" size="2" class="ml-2 transition-colors duration-100 outline outline-1 outline-slate-800/80 p-1 rounded-md focus:outline-1 focus:outline-violet-700 hover:bg-slate-400/10" /></label><br />
-            </div>
-            <div class="flex flex-col items-center">
-                <label class="text-slate-950 text-lg subpixel-antialiased">IBGE:
-                <input name="ibge" type="text" id="ibge" size="8" class="ml-2 transition-colors duration-100 outline outline-1 outline-slate-800/80 p-1 rounded-md focus:outline-1 focus:outline-violet-700 hover:bg-slate-400/10" /></label><br />
-            </div>
-        </details>
-        <button type="button" id="submitButton" class="transition duration-100 p-2 px-8 rounded-md text-slate-100 bg-gray-700 hover:bg-green-500 hover:shadow-md hover:shadow-green-500 text-lg subpixel-antialiased mt-4">Criar Usuário</button>
-       
+        <div class="flex flex-col items-start">
+          <label class="text-slate-950 text-lg subpixel-antialiased">Cidade: 
+            <input name="cidade" disabled type="text" id="cidade" size="40" class="text-base transition-colors duration-100 outline outline-1 outline-slate-800/80 p-1 rounded-md focus:outline-1 focus:outline-violet-700 hover:bg-slate-400/10" /></label><br />
+        </div>
+        <div class="flex flex-col items-start">
+          <label class="text-slate-950 text-lg subpixel-antialiased">Estado: 
+            <input name="uf" disabled type="text" id="uf" size="2" class="text-base ml-2 transition-colors duration-100 outline outline-1 outline-slate-800/80 p-1 rounded-md focus:outline-1 focus:outline-violet-700 hover:bg-slate-400/10" /></label><br />
+        </div>
+        <div class="flex flex-col items-start">
+          <label class="text-slate-950 text-lg subpixel-antialiased">IBGE: 
+            <input name="ibge" disabled type="text" id="ibge" size="8" class="text-base ml-2 transition-colors duration-100 outline outline-1 outline-slate-800/80 p-1 rounded-md focus:outline-1 focus:outline-violet-700 hover:bg-slate-400/10" /></label><br />
+        </div>
+      </details>
+      <button type="button" id="submitButton" class="transition duration-100 p-2 px-8 rounded-md text-slate-100 bg-gray-700 hover:bg-green-500 hover:shadow-md hover:shadow-green-500 text-lg subpixel-antialiased mt-4">Criar Usuário</button>
     </form>
-    <div id="mapa"></div>
-<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
-<script src="js/cep.js"></script>
-<script src="js/createUser.js"></script> 
-</body>
+    <div id="mapa" class="w-96 h-96 rounded-r-lg"></div>
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+    <script src="js/cep.js"></script>
+    <script src="js/createUser.js"></script>
+  </body>
 </html>
