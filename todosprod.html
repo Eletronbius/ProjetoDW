@@ -4,11 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Produtos</title>
+    <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body>
-    <div>
-        <a href="../">Voltar</a>
-    <button id="getAllButton">Recuperar Todos os Produtos</button>
+<body class="flex flex-row h-screen items-center justify-center bg-gray-700">
+    <a href="../" class="transition duration-200 text-slate-100 absolute top-0 left-0 bg-violet-500 px-8 py-2 mt-2 ml-2 rounded-lg hover:bg-violet-600 hover:shadow-xl hover:shadow-violet-600/50">Voltar</a>
+    <div class="w-fit flex flex-col items-center bg-gray-50 p-8 rounded-lg">
+    <p class="p-2 text-4xl font-bold underline decoration-violet-500 underline-offset-4 subpixel-antialiased">Listagem De Produtos</p>
+    <button id="getAllButton" class="transition duration-100 m-8 p-2 px-8 rounded-md text-slate-100 bg-gray-700 hover:bg-violet-600 hover:shadow-md hover:shadow-violet-600">Recuperar Todos os Produtos</button>
     <div id="usersList"></div>
 </div>
 
