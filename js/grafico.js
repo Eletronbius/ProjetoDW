@@ -23,7 +23,7 @@ function displayUsers(data) {
     const produtos = data.status;  
     console.log(produtos);
     produtos.forEach(user => {
-        legendas.push(user.id);
+        legendas.push("Usuário("+user.id+")");
         valores.push(user.quantidade_produtos);
     });
     const barColors = ["red", "green","blue","orange","blueviolet"];
