@@ -6,17 +6,17 @@
     <title>Gerenciamento de Usuários</title>
     <script src="https://cdn.tailwindcss.com"></script>
   </head>
-  <body class="flex flex-row h-screen items-center justify-center bg-gray-700">
-    <a href="MenuUsuarios.html" class="transition duration-200 text-slate-100 absolute top-0 left-0 bg-violet-500 px-8 py-2 mt-2 ml-2 rounded-lg hover:bg-violet-600 hover:shadow-xl hover:shadow-violet-600/50">Voltar</a>
-    <div class="w-fit flex flex-col items-center bg-gray-50 p-8 rounded-lg shadow-lg">
-      <p class="p-2 text-4xl font-bold underline decoration-violet-500 underline-offset-4 subpixel-antialiased">Buscar Usuário</p>
+  <body class="flex flex-row h-screen items-center justify-center bg-gray-100">
+    <a href="MenuUsuarios.html" class="transition duration-200 text-slate-50 absolute top-0 left-0 bg-sky-500 px-8 py-2 mt-2 ml-2 rounded-lg hover:bg-sky-400 hover:shadow-md hover:shadow-sky-400/50">Voltar</a>
+    <div class="w-fit flex flex-col items-center bg-white p-8 rounded-lg shadow-lg">
+      <p class="p-2 text-4xl font-bold underline decoration-sky-500 underline-offset-4 subpixel-antialiased">Buscar Usuário</p>
       <div class="mt-4 flex flex-row items-center">
         <label for="getUserId" class="text-slate-950 text-lg subpixel-antialiased">ID do Usuário:</label>
         <input type="number" id="getUserId" class="ml-2 transition-colors duration-100 outline outline-1 outline-slate-800/80 p-1 rounded-md focus:outline-1 focus:outline-violet-700 hover:bg-slate-400/10" />
       </div>
-      <button onclick="getUser()" class="transition duration-100 p-2 px-8 rounded-md text-slate-100 bg-gray-700 hover:bg-violet-600 hover:shadow-md hover:shadow-violet-600 text-lg subpixel-antialiased mt-4 mb-8">Buscar</button>
+      <button onclick="getUser()" class="transition duration-100 p-2 px-8 rounded-md text-slate-50 bg-gray-700 hover:bg-sky-500 hover:shadow-sm hover:shadow-sky-400 text-lg subpixel-antialiased mt-4 mb-8">Buscar</button>
 
-      <p class="p-2 text-2xl font-bold underline decoration-violet-500 underline-offset-4 subpixel-antialiased">Gerenciar Usuário</p>
+      <p class="p-2 text-2xl font-bold underline decoration-sky-500 underline-offset-4 subpixel-antialiased">Gerenciar Usuário</p>
       <div class="flex flex-col items-center mt-8">
         <label for="inpuNome" class="text-slate-950 text-lg subpixel-antialiased">Nome:</label>
         <input type="text" id="inpuNome" class="w-fit ml-2 transition-colors duration-100 outline outline-1 outline-slate-800/80 p-1 rounded-md focus:outline-1 focus:outline-violet-700 hover:bg-slate-400/10" />
