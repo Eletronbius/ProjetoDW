@@ -1,6 +1,6 @@
 <?php
 namespace App\Controller;
-
+use App\Controller\UserController;
 
 class AutorizadoController{
 
@@ -38,5 +38,20 @@ class AutorizadoController{
   }
 
   }
+  public function Token(){
+    $headers = getallheaders();
+    if(!isset($headers['Authorization'])) {
+        echo json_encode(['status' => false, 'message' => "sem token"]);
+        exit;
+    }
+    $token = $headers['Authorization'] ?? null;
+    $usuariosController = new UserController();
+    $validationResponse = $usuariosController->validarToken($token);
+    if ($token === null || !$validationResponse['status']) {
+        echo json_encode(['status' => false, 'message' => $validationResponse['message']]);
+        exit;
+    }
+    
+}
 
 }
