@@ -33,5 +33,5 @@ setInterval(validaToken, 60000);
 
 function redirecioneLogin() {
     alert("Token inválido ou expirado!")
-    window.location.href = "LoginUser.html";
+    window.location.href = "index.html";
 }

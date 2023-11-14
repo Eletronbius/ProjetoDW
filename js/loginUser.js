@@ -36,7 +36,7 @@ function loginUser() {
             sessionStorage.setItem('token',data.token);
 
             alert('Login Bem Sucedido')
-            window.location.href="./";
+            window.location.href="MenuPrincipal.html";
         }else{
             alert("Erro: " + data.error);
         } 
