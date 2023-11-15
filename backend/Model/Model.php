@@ -5,11 +5,11 @@ use PDO;
 use PDOException;
  class Model {
  private $host = "localhost";
- private $db_name = "test_drive";
+ private $db_name = "banco";
  private $username = "root";
- private $password = "root123";
+ private $password = "Etirrisa01!";
  private $conn;
- private $db_type = "sqlite"; // Opções: "mysql", "pgsql", "sqlite", "mssql"
+ private $db_type = "mysql"; // Opções: "mysql", "pgsql", "sqlite", "mssql"
 /*Dependendo do tipo de banco de dados escolhido, você pode precisar ajustar os parâmetros de conexão ($host, $db_name, $username e $password) da seguinte forma:
 
           MySQL:
@@ -150,20 +150,6 @@ public function delete($table, $conditions) {
         FROM users u
         LEFT JOIN vendas v ON u.id = v.id_usuario
         GROUP BY u.id";
-
-        $this->conn->exec($sql);
-
-    }
-    public function criarTabela(){
-
-        $sql="
-        CREATE TABLE IF NOT EXISTS vendas (
-            id_usuario INTEGER,
-            id_produto INTEGER,
-            data_cadastro DATE,
-            FOREIGN KEY (id_usuario) REFERENCES usuario(id),
-            FOREIGN KEY (id_produto) REFERENCES produtos(id)
-        );";
 
         $this->conn->exec($sql);
 
