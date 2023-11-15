@@ -33,6 +33,7 @@ function displayUsers(data) {
         listItem.classList.add("subpixel-antialiased");
         listItem.classList.add("hover:text-sky-500");
         listItem.classList.add("hover:font-bold");
+
         listItem.textContent = `${user.id} - ${user.nome} - ${user.preco} - ${user.quantidade}`;
         list.appendChild(listItem);
     });
