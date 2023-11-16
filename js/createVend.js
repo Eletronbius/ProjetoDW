@@ -1,4 +1,5 @@
 document.getElementById('submitButton').addEventListener('click', createVenda);
+var token = sessionStorage.getItem('token');
 function createVenda() {
     const idusuario = document.getElementById('idusuario').value;
     const idproduto = document.getElementById('idproduto').value;
@@ -16,6 +17,7 @@ function createVenda() {
     fetch('/backend/venda.php', { 
         method: 'POST',
         headers: {
+            'Authorization':  token,
             'Content-Type': 'application/json'
         },
         body: JSON.stringify(venda)

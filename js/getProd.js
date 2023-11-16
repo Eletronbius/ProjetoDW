@@ -1,8 +1,12 @@
 function getProd() {
     const userId = document.getElementById("getProdId").value;
-
+    var token = sessionStorage.getItem('token');
     fetch('/backend/produtos.php?id=' + userId, {
-        method: 'GET'
+        method: 'GET',
+        headers: {
+            'Authorization':  token,
+            'Content-Type': 'application/json'
+        }
     })
     .then(response => {
         if (!response.ok) {

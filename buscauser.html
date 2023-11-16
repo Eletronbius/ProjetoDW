@@ -4,10 +4,12 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Gerenciamento de Usuários</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
     <script src="js/TokenCheck.js"></script>
     <script src="https://cdn.tailwindcss.com"></script>
   </head>
   <body class="flex flex-row h-screen items-center justify-center bg-gray-100">
+    <a id="LogOff" href="" class="transition duration-200 text-slate-50 absolute bottom-0 left-0 bg-red-500 px-8 py-2 mb-2 ml-2 rounded-lg hover:bg-red-400 hover:shadow-md hover:shadow-red-400/50">Sair</a>
     <a href="MenuUsuarios.html" class="transition duration-200 text-slate-50 absolute top-0 left-0 bg-sky-500 px-8 py-2 mt-2 ml-2 rounded-lg hover:bg-sky-400 hover:shadow-md hover:shadow-sky-400/50">Voltar</a>
     <div class="w-fit flex flex-col items-center bg-white p-8 rounded-lg shadow-lg">
       <p class="p-2 text-4xl font-bold underline decoration-sky-500 underline-offset-4 subpixel-antialiased">Buscar Usuário</p>
@@ -29,9 +31,50 @@
       <button onclick="updateUser()" class="transition duration-100 p-2 px-8 rounded-md text-slate-100 bg-green-400 hover:bg-green-500 hover:shadow-md hover:shadow-green-500 text-lg subpixel-antialiased mt-2 mb-2">Atualizar</button>
       <button onclick="deleteUser()" class="transition duration-100 p-2 px-8 rounded-md text-slate-100 bg-red-500 hover:bg-red-600 hover:shadow-md hover:shadow-red-600 text-lg subpixel-antialiased">Excluir</button>
     </div>
+    <div class="w-fit flex flex-col items-center bg-white p-8 ml-2 rounded-lg shadow-lg">
+      <p class="p-2 text-4xl font-bold underline decoration-sky-500 underline-offset-4 subpixel-antialiased">Endereços do Usuário</p>
+      <details class="h-48 overflow-y-auto">
+        <summary>Cadastrar Endereco</summary>
+        <button id="AddEnd" onclick="AddEnd()" class="transition duration-100 p-2 px-8 rounded-md text-slate-100 bg-green-400 hover:bg-green-500 hover:shadow-md hover:shadow-green-500 text-lg subpixel-antialiased mt-2 mb-2" disabled>Cadastrar Endereço</button>
+        <div class="flex flex-col items-center" id="mapaContainer">
+          <label class="text-slate-950 text-lg subpixel-antialiased">Cep: 
+            <input name="cep" type="text" id="cep" value="" size="10" maxlength="9" onblur="pesquisacep(this.value);" class="text-base ml-2 transition-colors duration-100 outline outline-1 outline-slate-800/80 p-1 rounded-md focus:outline-1 focus:outline-violet-700 hover:bg-slate-400/10" /></label><br />
+        </div>
+        <div class="flex flex-col items-start">
+          <label class="text-slate-950 text-lg subpixel-antialiased">Rua: 
+            <input name="rua" disabled type="text" id="rua" size="60" class="text-base ml-2 transition-colors duration-100 outline outline-1 outline-slate-800/80 p-1 rounded-md focus:outline-1 focus:outline-violet-700 hover:bg-slate-400/10" /></label><br />
+        </div>
+        <div class="flex flex-col items-start">
+          <label class="text-slate-950 text-lg subpixel-antialiased">Bairro: 
+            <input name="bairro" disabled type="text" id="bairro" size="40" class="text-base ml-2 transition-colors duration-100 outline outline-1 outline-slate-800/80 p-1 rounded-md focus:outline-1 focus:outline-violet-700 hover:bg-slate-400/10" /></label><br />
+        </div>
+        <div class="flex flex-col items-start">
+          <label class="text-slate-950 text-lg subpixel-antialiased">Cidade: 
+            <input name="cidade" disabled type="text" id="cidade" size="40" class="text-base transition-colors duration-100 outline outline-1 outline-slate-800/80 p-1 rounded-md focus:outline-1 focus:outline-violet-700 hover:bg-slate-400/10" /></label><br />
+        </div>
+        <div class="flex flex-col items-start">
+          <label class="text-slate-950 text-lg subpixel-antialiased">Estado: 
+            <input name="uf" disabled type="text" id="uf" size="2" class="text-base ml-2 transition-colors duration-100 outline outline-1 outline-slate-800/80 p-1 rounded-md focus:outline-1 focus:outline-violet-700 hover:bg-slate-400/10" /></label><br />
+        </div>
+        <div class="flex flex-col items-start">
+          <label class="text-slate-950 text-lg subpixel-antialiased">IBGE: 
+            <input name="ibge" disabled type="text" id="ibge" size="8" class="text-base ml-2 transition-colors duration-100 outline outline-1 outline-slate-800/80 p-1 rounded-md focus:outline-1 focus:outline-violet-700 hover:bg-slate-400/10" /></label><br />
+        </div>
+        
+      </details>
 
+      <details>
+        <summary>Endereços</summary>
+        <div id="endList" class="w-full">
+        
+        </div>
+      </details>
+    </div>
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+    <script src="js/cep.js"></script>
     <script src="js/getUser.js"></script>
     <script src="js/updateUser.js"></script>
     <script src="js/deleteUser.js"></script>
+    <script src="js/AddEnd.js"></script>
   </body>
 </html>

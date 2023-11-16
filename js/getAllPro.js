@@ -1,7 +1,12 @@
 document.getElementById('getAllButton').addEventListener('click', getAll);
 function getAll() {
+    var token = sessionStorage.getItem('token');
     fetch('/backend/produtos.php', {
-        method: 'GET'
+        method: 'GET',
+        headers: {
+            'Authorization':  token,
+            'Content-Type': 'application/json'
+        }
     })
     .then(response => {
         if (!response.ok) {

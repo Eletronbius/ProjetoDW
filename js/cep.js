@@ -34,6 +34,18 @@ else {
 }
 
 function pesquisacep(valor) {
+if(!document.getElementById("mapa")){
+  const mapaContainer = document.getElementById("mapaContainer");
+  const mapa = document.createElement('div');
+  mapa.setAttribute("id", "mapa")
+  mapa.classList.add("w-48");
+  mapa.classList.add("h-48");
+  mapa.classList.add("rounded-lg");
+  mapa.classList.add("my-4");
+  mapa.classList.add("shadow-lg");
+  mapaContainer.appendChild(mapa);
+}
+
 
 //Nova variável "cep" somente com dígitos.
 var cep = valor.replace(/\D/g, '');
@@ -89,5 +101,6 @@ function Mapa(lat, lon){
   mapa.addLayer(layer);
   let Marcador = new L.Marker([lat,lon]);
   Marcador.addTo(mapa);
-
+  const Endbtn = document.getElementById("AddEnd");
+  Endbtn.disabled=false;
 };

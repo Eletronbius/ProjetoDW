@@ -2,13 +2,8 @@
 namespace App\login;
 require '../vendor/autoload.php';  
 
-use \Firebase\JWT\JWT;
-use App\Model\Model;
-use App\Controller\UserController;
-use App\Model\Usuario;
 
-$model = new Model();
-$user = new Usuario();
+use App\Controller\UserController;
 
 header('Content-Type: application/json');
 header('Access-Control-Allow-Origin: * ' );
@@ -24,9 +19,10 @@ switch($_SERVER["REQUEST_METHOD"]){
 case 'POST':
     $senha= $data['senha'];
     $email= $data['email'];
-    $resultado = $usercontroller->login($email,$senha);
+    $lembrar= $data['lembrar'];
+    $resultado = $usercontroller->login($email,$senha,$lembrar);
     if(!$resultado['status']){
-        echo json_encode(['status' => $resultado['status'], 'message' => $resultado['message']]);
+        echo json_encode($resultado);
        exit;
     }
     echo json_encode(['status' => $resultado['status'], 'message' => $resultado['message'],'token'=>$resultado['token']]);

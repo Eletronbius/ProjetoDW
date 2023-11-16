@@ -1,5 +1,5 @@
 document.getElementById('submitButton').addEventListener('click', createUser);
-var token = localStorage.getItem('token');
+var token = sessionStorage.getItem('token');
 function createUser() {
     const nomeProd = document.getElementById('nomeprod').value;
     const precoProd = document.getElementById('precoprod').value;
@@ -19,6 +19,7 @@ function createUser() {
     fetch('/backend/produtos.php', { 
         method: 'POST',
         headers: {
+            'Authorization':  token,
             'Content-Type': 'application/json'
         },
         body: JSON.stringify(usuario)

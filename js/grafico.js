@@ -1,6 +1,11 @@
 function getAll() {
+    var token = sessionStorage.getItem('token');
     fetch('/backend/venda.php', {
-        method: 'GET'
+        method: 'GET',
+        headers: {
+            'Authorization':  token,
+            'Content-Type': 'application/json'
+        }
     })
     .then(response => {
         if (!response.ok) {

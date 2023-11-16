@@ -3,8 +3,6 @@
 namespace App\permissao;
 require "../vendor/autoload.php";
 use App\Controller\PerfilPermissaoController;
-use App\Model\Permissao;
-$permissao = new Permissao();
 
 header('Content-Type: application/json');
 header('Access-Control-Allow-Origin: *');

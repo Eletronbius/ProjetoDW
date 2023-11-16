@@ -7,7 +7,7 @@
   <title>Permissoes</title>
   <link rel="stylesheet" href="css/w3.css">
   <link rel="stylesheet" href="css/styleaTime.css">
-  <!-- <script src="https://cdn.tailwindcss.com"></script> -->
+  <script src="https://cdn.tailwindcss.com"></script>
   <style>
     body {
       display: none;
@@ -17,6 +17,8 @@
   <script src="js/TokenCheck.js"></script>
 </head>
 <body>
+  <a id="LogOff" href="" class="transition duration-200 text-slate-50 absolute bottom-0 left-0 bg-red-500 px-8 py-2 mb-2 ml-2 rounded-lg hover:bg-red-400 hover:shadow-md hover:shadow-red-400/50">Sair</a>
+  <a href="MenuPrincipal.html" class="transition duration-200 text-slate-50 absolute top-0 left-0 bg-sky-500 px-8 py-2 mt-2 ml-2 rounded-lg hover:bg-sky-400 hover:shadow-md hover:shadow-sky-400/50">Voltar</a>
   <div class="w3-bar w3-black" id="myDIV">
   </div>
   <div class="w3-container w3-display-middle">
@@ -41,7 +43,7 @@
             <button id="addPermissaoBtn" class="w3-button w3-round w3-border w3-border-blue">Adicionar Permissão</button>
           </div>
        
-  <div class="w3-card-4 w3-container w3-margin-bottom">
+  <div class="w3-card-4 w3-container w3-margin-bottom  overflow-y-auto">
     <ul id="permissoesList" class="w3-ul"></ul>
   </div>
 </div>

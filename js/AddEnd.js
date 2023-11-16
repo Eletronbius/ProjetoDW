@@ -1,25 +1,14 @@
-document.getElementById('submitButton').addEventListener('click', createUser);
-var token = sessionStorage.getItem('token');
-function createUser() {
-    const nomeUsuario = document.getElementById('nome').value;
-    const emailUsuario = document.getElementById('email').value;
-    const senhaUsuario = document.getElementById('senha').value;
+
+function AddEnd() {
+    var token = sessionStorage.getItem('token');
+    const idend = document.getElementById('getUserId').value;
     const cepUsuario = document.getElementById('cep').value;
     const ruaUsuario = document.getElementById('rua').value;
     const bairroUsuario = document.getElementById('bairro').value;
     const cidadeUsuario = document.getElementById('cidade').value;
     const ufUsuario = document.getElementById('uf').value;
-
-
-    if (!nomeUsuario) {
-        alert("Por favor, insira um nome!");
-        return;
-    }
-
-    const usuario = {
-        nome: nomeUsuario,
-        email: emailUsuario,
-        senha: senhaUsuario,
+    const end = {
+        idend: idend,
         cep:cepUsuario,
         rua:ruaUsuario,
         bairro:bairroUsuario,
@@ -27,13 +16,13 @@ function createUser() {
         uf:ufUsuario
     };
 
-    fetch('/backend/usuarios.php', { 
+    fetch('/backend/endereco.php', { 
         method: 'POST',
         headers: {
             'Authorization':  token,
             'Content-Type': 'application/json'
         },
-        body: JSON.stringify(usuario)
+        body: JSON.stringify(end)
     })
     .then(response => {
         if (!response.ok) {
@@ -46,11 +35,7 @@ function createUser() {
         return response.json();
     })
     .then(data => {
-        if(!data.status){
-            alert('Usuário já existe')
-        }else{
-            alert("Usuário criado: " + JSON.stringify(data));
-        } 
+            alert("Endereço Registrado: " + JSON.stringify(data));
        
     })
     .catch(error => alert('Erro na requisição: ' + error));

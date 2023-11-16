@@ -1,7 +1,12 @@
 function deleteUser() {
+    var token = sessionStorage.getItem('token');
     const userId = document.getElementById("getUserId").value;
     fetch('/backend/usuarios.php?id=' + userId, {
-        method: 'DELETE'
+        method: 'DELETE',
+        headers: {
+            'Authorization':  token,
+            'Content-Type': 'application/json'
+        }
     })
     .then(response => {
         if (!response.ok) {

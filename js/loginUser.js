@@ -2,8 +2,7 @@ document.getElementById('submitButton').addEventListener('click', loginUser);
 function loginUser() {
     const emailUsuario = document.getElementById('EmailUser').value;
     const senhaUsuario = document.getElementById('SenhaUser').value;
-
-
+    const lembrar = document.getElementById("lembrar").checked;
     if (!emailUsuario) {
         alert("Por favor, insira um Email!");
         return;
@@ -11,7 +10,8 @@ function loginUser() {
 
     const usuario = {
         email: emailUsuario,
-        senha: senhaUsuario
+        senha: senhaUsuario,
+        lembrar: lembrar
     };
 
     fetch('/backend/login.php', { 

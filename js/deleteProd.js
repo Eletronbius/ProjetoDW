@@ -1,7 +1,13 @@
 function deleteProd() {
+    var token = sessionStorage.getItem('token');
     const prodId = document.getElementById("getProdId").value;
     fetch('/backend/produtos.php?id=' + prodId, {
-        method: 'DELETE'
+        method: 'DELETE',
+        headers: {
+            'Authorization':  token,
+            'Content-Type': 'application/json'
+        }
+        
     })
     .then(response => {
         if (!response.ok) {

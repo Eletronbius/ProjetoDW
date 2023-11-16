@@ -1,7 +1,6 @@
 document.addEventListener("DOMContentLoaded", async function() {
     const token = sessionStorage.getItem('token');
-
-
+    document.getElementById('LogOff').addEventListener('click', logOff);
   async function validaToken() {
     try {
         const response = await fetch('backend/login.php', {
@@ -18,9 +17,8 @@ document.addEventListener("DOMContentLoaded", async function() {
         const telasPermitidas = jsonResponse.tela.map(tela => tela.nome);
         const nomePaginaAtual = window.location.pathname.split('/').pop().replace('.html', '');
         const itensMenu = document.querySelectorAll('a.item');
-           console.log(itensMenu)
         itensMenu.forEach(item => {
-            const nomeTela = item.dataset.tela; 
+            const nomeTela = item.href.split('/').pop().replace('.html', ''); 
             if (telasPermitidas.includes(nomeTela)) {
                 item.style.display = 'flex'; 
             } else {
@@ -30,8 +28,10 @@ document.addEventListener("DOMContentLoaded", async function() {
 
         if (!telasPermitidas.includes(nomePaginaAtual)) {
             if (telasPermitidas.length > 0) {  
-                /* window.location.href = telasPermitidas[0] + '.html'; */  
+                console.log(telasPermitidas[0] + '.html')
+                window.location.href = telasPermitidas[0] + '.html';
             } else {
+                alert("Token inválido ou expirado!");
                 window.location.href = 'index.html';  
             }
         }
@@ -47,9 +47,15 @@ document.addEventListener("DOMContentLoaded", async function() {
 validaToken();
 
 setInterval(validaToken, 60000);
+
 });
 
 function redirecioneLogin() {
-    alert("Token inválido ou expirado!")
+    alert("Token inválido ou expirado!");
     window.location.href = "index.html";
 }
+function logOff(){
+    sessionStorage.removeItem("token","");
+    window.location.href = "index.html";
+}
+

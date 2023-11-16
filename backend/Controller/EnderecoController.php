@@ -17,11 +17,13 @@ class EnderecoController {
         
         return  $user;
     }
+
     public function selectId($id){
-        $user = $this->db->select('endereco',['id'=>$id]);
+        $end = $this->db->select('endereco',['id'=>$id]);
         
-        return  $user;
+        return  $end;
     }
+
     public function insert(){
 
         if($this->db->insert('endereco', 
@@ -43,7 +45,7 @@ class EnderecoController {
         }
         return false;
     }
-    public function delete( $conditions){
+    public function delete($conditions){
         if($this->db->delete('endereco', ['id'=>$conditions])){
             return true;
         }

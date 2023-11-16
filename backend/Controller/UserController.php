@@ -32,6 +32,11 @@ class UserController {
         
         return  $user;
     }
+    public function selectEndId($id){
+        $enderecos = $this->db->select('endereco',['iduser'=>$id]);
+        
+        return  $enderecos;
+    }
     public function insert($data){
         $this->usuarios->setNome($data['nome']);
         $this->usuarios->setEmail($data['email']);
@@ -69,11 +74,11 @@ class UserController {
     }
 
   
-    public function login($email,$senha) {
+    public function login($email,$senha,$lembrar) {
         $algoritimo='HS256';
         $key= "9b426114868f4e2179612445148c4985429e5138758ffeed5eeac1d1976e7443";
-        $resultado = $this->select($this->usuarios, ['email' => $email]);
-        $checado= 3;
+        $resultado = $this->db->select('users', ['email' => $email]);
+        $checado= $lembrar? 60*12 : 3;
         if (!$resultado) {
             return ['status' => false, 'message' => 'Usuário não encontrado.'];
         }
@@ -106,4 +111,5 @@ class UserController {
             return ['status' => false, 'message' => 'Token inválido! Motivo: ' . $e->getMessage()];
         }
     }
+
 }
