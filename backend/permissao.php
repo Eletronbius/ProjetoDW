@@ -1,6 +1,8 @@
 <?php
+
+namespace App\permissao;
+require "../vendor/autoload.php";
 use App\Controller\PerfilPermissaoController;
-use App\Model\Perfil;
 use App\Model\Permissao;
 $permissao = new Permissao();
 
@@ -16,10 +18,11 @@ $perfilId = isset($_GET['perfilId']) ? $_GET['perfilId'] : '';
 $permissaoId = isset($body['permissaoId']) ? $body['permissaoId'] : '';
 
 $controller = new PerfilPermissaoController();
+
 switch ($_SERVER["REQUEST_METHOD"]) {
     case "POST":
-
-        $resultado = $controller->adicionarPermissao($perfilId, $body['nome']);
+        $perfilid = isset($body['perfilId']) ? $body['perfilId'] : '';
+        $resultado = $controller->adicionarPermissao($perfilid, $body['nome']);
         echo json_encode(['status' => $resultado]);
         break;
 
@@ -27,7 +30,6 @@ switch ($_SERVER["REQUEST_METHOD"]) {
             if ($perfilId) {
                
                 $resultado = $controller->obterPermissoesDoPerfil($perfilId);
-        
                 if (!$resultado) {
                     echo json_encode(["status" => false, "mensagem" => "Nenhum resultado encontrado"]);
                     exit;

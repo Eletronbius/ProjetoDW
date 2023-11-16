@@ -148,8 +148,8 @@ public function delete($table, $conditions) {
         return $stmt->execute();
     }
     public function selectPermissoesPorPerfil($perfilId) {
-        $stmt = $this->conn->prepare("CALL GetPermissoesPorPerfil(:perfilId)");
-        $stmt->bindValue(":perfilId", $perfilId, PDO::PARAM_INT);
+        $stmt = $this->conn->prepare("CALL GetPermissoesPorPerfil(:perfilid)");
+        $stmt->bindValue(":perfilid", $perfilId, PDO::PARAM_INT);
         $stmt->execute();
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
@@ -173,11 +173,12 @@ public function delete($table, $conditions) {
     public function associar($perfilId, $permissaoId)
     {
     $query = "
-        INSERT INTO perfil_permissoes (perfil_id, permissao_id) VALUES (:perfil_id, :permissao_id)
+        INSERT INTO perfil_permissoes (perfilid, permissao_id) VALUES (:perfilid, :permissao_id)
     ";
     $stmt = $this->conn->prepare($query);
-    $stmt->bindParam(":perfil_id", $perfilId);
+    $stmt->bindParam(":perfilid", $perfilId);
     $stmt->bindParam(":permissao_id", $permissaoId);
+    
     return $stmt->execute();
     }
     public function listarTodasPermissoes()
@@ -190,10 +191,10 @@ public function delete($table, $conditions) {
     public function desassociar($perfilId, $permissaoId)
     {
     $query = "
-        DELETE FROM perfil_permissoes WHERE perfil_id = :perfil_id AND permissao_id = :permissao_id
+        DELETE FROM perfil_permissoes WHERE perfilid = :perfilid AND permissao_id = :permissao_id
     ";
     $stmt = $this->conn->prepare($query);
-    $stmt->bindParam(":perfil_id", $perfilId);
+    $stmt->bindParam(":perfilid", $perfilId);
     $stmt->bindParam(":permissao_id", $permissaoId);
     return $stmt->execute();
     }
@@ -212,7 +213,7 @@ public function delete($table, $conditions) {
     $query = "
         SELECT perfil.id, perfil.nome 
         FROM perfil_permissoes
-        JOIN perfil ON perfil.id = perfil_permissoes.perfil_id
+        JOIN perfil ON perfil.id = perfil_permissoes.perfilid
         WHERE perfil_permissoes.permissao_id = :permissao_id
     ";
     $stmt = $this->conn->prepare($query);

@@ -68,13 +68,40 @@ class UserController {
         
     }
 
+  
+    public function login($email,$senha) {
+        $algoritimo='HS256';
+        $key= "9b426114868f4e2179612445148c4985429e5138758ffeed5eeac1d1976e7443";
+        $resultado = $this->select($this->usuarios, ['email' => $email]);
+        $checado= 3;
+        if (!$resultado) {
+            return ['status' => false, 'message' => 'Usuário não encontrado.'];
+        }
+        if (!password_verify($senha, $resultado[0]['senha'])) {
+            return ['status' => false, 'message' => 'Senha incorreta.'];
+        }
+        $permissoes = $this->db->selectPermissoesPorPerfil($resultado[0]['perfilid']);
+        $algoritimo='HS256';
+            $payload = [
+                "iss" => "localhost",
+                "aud" => "localhost",
+                "iat" => time(),
+                "exp" => time() + (60 * $checado),  
+                "sub" => $this->usuarios->getEmail(),
+                'telas'=>$permissoes
+            ];
+            
+            $jwt = JWT::encode($payload, $key,$algoritimo);
+        return ['status' => true, 'message' => 'Login bem-sucedido!','token'=>$jwt,'telas'=>$permissoes];
+    }
     public function validarToken($token){
         
         $key = "9b426114868f4e2179612445148c4985429e5138758ffeed5eeac1d1976e7443";
         $algoritimo = 'HS256';
         try {
             $decoded = JWT::decode($token, new Key($key, $algoritimo));
-            return ['status' => true, 'message' => 'Token válido!', 'data' => $decoded];
+            $permissoes = $decoded->telas;
+            return ['status' => true, 'message' => 'Token válido!', 'tela'=>$permissoes];
         } catch(Exception $e) {
             return ['status' => false, 'message' => 'Token inválido! Motivo: ' . $e->getMessage()];
         }

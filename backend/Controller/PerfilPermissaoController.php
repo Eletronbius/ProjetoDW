@@ -16,7 +16,13 @@ class PerfilPermissaoController
             $this->db->cadPermissao($permissao);
             return $this->db->associar($perfilId, $this->db->getLastInsertId());
         }else{
-            return $this->db->associar($perfilId, $resultado[0]['id']);
+            $permissoes = array_column($this->obterPermissoesDoPerfil($perfilId),'nome',0);
+
+            if(array_search($permissao,$permissoes) != false){
+                return false;
+            }else{
+                return $this->db->associar($perfilId, $resultado[0]['id']);
+            }
         }
     }
     public function removerPermissao($perfilId, $permissao){
@@ -37,6 +43,5 @@ class PerfilPermissaoController
     public function listarPermissoes(){
         return $this->db->listarTodasPermissoes();
     }
-
 
 }
