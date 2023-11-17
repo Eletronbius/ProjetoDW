@@ -2,7 +2,6 @@ document.addEventListener("DOMContentLoaded",validaToken());
 
  function validaToken() {
     const token = sessionStorage.getItem('token');
-    document.getElementById('LogOff').addEventListener('click', logOff);
     const urlBase="https://davialp.000webhostapp.com/";
     try {
         const response = fetch(`${urlBase}backend/login.php`, {
@@ -55,8 +54,5 @@ function redirecioneLogin() {
     alert("Token inválido ou expirado!");
     window.location.href = "index.html";
 }
-function logOff(){
-    sessionStorage.removeItem("token","");
-    window.location.href = "index.html";
-}
+
 
