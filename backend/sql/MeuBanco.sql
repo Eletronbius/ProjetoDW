@@ -26,11 +26,11 @@ DROP TABLE IF EXISTS `endereco`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `endereco` (
   `id` int Not NULL AUTO_INCREMENT Primary KEY,
-  `cep` varchar(9) DEFAULT NULL,
-  `rua` varchar(21) DEFAULT NULL,
-  `bairro` varchar(11) DEFAULT NULL,
-  `cidade` varchar(9) DEFAULT NULL,
-  `uf` varchar(2) DEFAULT NULL,
+  `cep` varchar(90) DEFAULT NULL,
+  `rua` varchar(210) DEFAULT NULL,
+  `bairro` varchar(110) DEFAULT NULL,
+  `cidade` varchar(90) DEFAULT NULL,
+  `uf` varchar(20) DEFAULT NULL,
   `iduser` int DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;

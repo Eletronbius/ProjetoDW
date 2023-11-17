@@ -42,12 +42,19 @@ function getUser() {
             document.getElementById("inpuNome").value = data.usuario.nome; 
             document.getElementById("inputEmail").value = data.usuario.email;
             const endList = document.getElementById("endList");
+            
+            if(document.getElementById("ListaEnd")){
+                const ul = document.getElementById("ListaEnd");
+                endList.removeChild(ul);
+
+            }
             const ul = document.createElement("ul");
             ul.classList.add("overflow-y-auto");
             ul.classList.add("flex");
             ul.classList.add("flex-col");
             ul.classList.add("items-start");
             ul.classList.add("w-full");
+            ul.setAttribute("id","ListaEnd");
             const enderecos = data.enderecos;
             enderecos.forEach(endereco => {
                 const li = document.createElement('li');
@@ -66,13 +73,8 @@ function getUser() {
                 removeBtn.classList.add("p-2");
                 removeBtn.addEventListener('click',function() {
                     const result = deleteEnd(endereco.id);
-                    console.log(result.status)
-                    if (result.status) {   
                         alert('Endereço removido com sucesso!');
                         li.remove(); 
-                    } else {
-                        alert('Erro ao remover endereço.');
-                    }
                 });
                 li.appendChild(removeBtn);
                 ul.appendChild(li);
