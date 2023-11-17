@@ -2,12 +2,13 @@ function updateUser() {
     const userId = document.getElementById("getUserId").value;
     const userName = document.getElementById("inpuNome").value;
     const userEmail = document.getElementById("inputEmail").value;
+    const urlBase="https://davialp.000webhostapp.com/";
     const usuarioAtualizado = {
         nome: userName,
         email: userEmail
     };
 
-    fetch('/backend/usuarios.php?id=' + userId, { 
+    fetch(`${urlBase}backend/usuarios.php?id=` + userId, { 
         method: 'PUT',
         headers: {
             'Content-Type': 'application/json'

@@ -1,7 +1,8 @@
 function getProd() {
     const userId = document.getElementById("getProdId").value;
     var token = sessionStorage.getItem('token');
-    fetch('/backend/produtos.php?id=' + userId, {
+    const urlBase="https://davialp.000webhostapp.com/";
+    fetch(`${urlBase}backend/produtos.php?id=` + userId, {
         method: 'GET',
         headers: {
             'Authorization':  token,

@@ -1,9 +1,10 @@
 document.addEventListener("DOMContentLoaded", async function() {
     const token = sessionStorage.getItem('token');
     document.getElementById('LogOff').addEventListener('click', logOff);
+    const urlBase="https://davialp.000webhostapp.com/";
   async function validaToken() {
     try {
-        const response = await fetch('backend/login.php', {
+        const response = await fetch(`${urlBase}backend/login.php`, {
             method: 'GET',
             headers: {
                 'Authorization':  token

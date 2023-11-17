@@ -1,7 +1,8 @@
 document.getElementById('getAllButton').addEventListener('click', getAll);
 function getAll() {
     var token = sessionStorage.getItem('token');
-    fetch('/backend/usuarios.php', {
+    const urlBase="https://davialp.000webhostapp.com/";
+    fetch(`${urlBase}backend/usuarios.php`, {
         method: 'GET',
         headers: {
             'Authorization':  token,

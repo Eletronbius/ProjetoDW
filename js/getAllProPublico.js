@@ -1,6 +1,7 @@
 document.getElementById('getAllButton').addEventListener('click', getAll);
 function getAll() {
-    fetch('/backend/produtos.php', {
+    const urlBase="https://davialp.000webhostapp.com/";
+    fetch(`${urlBase}backend/produtos.php`, {
         method: 'GET'
     })
     .then(response => {

@@ -7,6 +7,7 @@ function AddEnd() {
     const bairroUsuario = document.getElementById('bairro').value;
     const cidadeUsuario = document.getElementById('cidade').value;
     const ufUsuario = document.getElementById('uf').value;
+    const urlBase="https://davialp.000webhostapp.com/";
     const end = {
         idend: idend,
         cep:cepUsuario,
@@ -16,7 +17,7 @@ function AddEnd() {
         uf:ufUsuario
     };
 
-    fetch('/backend/endereco.php', { 
+    fetch(`${urlBase}backend/endereco.php`, { 
         method: 'POST',
         headers: {
             'Authorization':  token,

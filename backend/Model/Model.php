@@ -5,8 +5,8 @@ use PDO;
 use PDOException;
  class Model {
  private $host = "localhost";
- private $db_name = "banco";
- private $username = "root";
+ private $db_name = "id21521125_meubd";
+ private $username = "id21521125_root";
  private $password = "Etirrisa01!";
  private $conn;
  private $db_type = "mysql"; // Opções: "mysql", "pgsql", "sqlite", "mssql"

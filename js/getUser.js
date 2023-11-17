@@ -1,6 +1,7 @@
 async function deleteEnd(endid){
     var token = sessionStorage.getItem('token');
-    const response = await fetch('/backend/endereco.php?id=' + endid, {
+    const urlBase="https://davialp.000webhostapp.com/";
+    const response = await fetch(`${urlBase}backend/endereco.php?id=` + endid, {
         method: 'DELETE',
         headers: {
             'Authorization':  token,
@@ -16,7 +17,8 @@ async function deleteEnd(endid){
 function getUser() {
     const userId = document.getElementById("getUserId").value;
     var token = sessionStorage.getItem('token');
-    fetch('/backend/usuarios.php?id=' + userId, {
+    const urlBase="https://davialp.000webhostapp.com/";
+    fetch(`${urlBase}backend/usuarios.php?id=` + userId, {
         method: 'GET',
         headers: {
             'Authorization':  token,

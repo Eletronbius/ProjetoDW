@@ -1,7 +1,8 @@
 document.addEventListener("DOMContentLoaded", function() {
     const token = sessionStorage.getItem('token');
+    const urlBase="https://davialp.000webhostapp.com/";
   async function getPerfis() {
-      const response = await fetch(`backend/permissao.php`, {
+      const response = await fetch(`${urlBase}backend/permissao.php`, {
           method: 'GET',
           headers: {
               'Authorization':  token,
@@ -11,7 +12,7 @@ document.addEventListener("DOMContentLoaded", function() {
       return await response.json();
   }
   async function getListaPermissoes() {
-    const response = await fetch(`backend/permissaoALL.php`, {
+    const response = await fetch(`${urlBase}backend/permissaoALL.php`, {
         method: 'GET',
         headers: {
             'Authorization':  token,
@@ -35,7 +36,7 @@ async function populateDropdown() {
 populateDropdown();
 
   async function addPermissao(perfilId, permissaoName) {
-      const response = await fetch(`backend/permissao.php`, {
+      const response = await fetch(`${urlBase}backend/permissao.php`, {
           method: 'POST',
           headers: {
                'Authorization':  token,
@@ -47,7 +48,7 @@ populateDropdown();
   }
 
   async function deletePermissao(perfilId, permissaoName) {
-      const response = await fetch(`backend/permissao.php?perfilId=`+perfilId, {
+      const response = await fetch(`${urlBase}backend/permissao.php?perfilId=`+perfilId, {
           method: 'DELETE',
           headers: {
               'Authorization':  token,
@@ -59,7 +60,7 @@ populateDropdown();
   }
 
   async function getPermissoes(perfilId) {
-    const response = await fetch(`backend/permissao.php?perfilId=`+perfilId, {
+    const response = await fetch(`${urlBase}backend/permissao.php?perfilId=`+perfilId, {
         method: 'GET',
         headers: {
             'Authorization':  token,

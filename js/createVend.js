@@ -3,7 +3,7 @@ var token = sessionStorage.getItem('token');
 function createVenda() {
     const idusuario = document.getElementById('idusuario').value;
     const idproduto = document.getElementById('idproduto').value;
-
+    const urlBase="https://davialp.000webhostapp.com/";
     if (!idusuario) {
         alert("Por favor, insira um id de usuário!");
         return;
@@ -14,7 +14,7 @@ function createVenda() {
         idproduto: idproduto,
     };
 
-    fetch('/backend/venda.php', { 
+    fetch(`${urlBase}backend/venda.php`, { 
         method: 'POST',
         headers: {
             'Authorization':  token,

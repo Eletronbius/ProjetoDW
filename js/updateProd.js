@@ -3,13 +3,14 @@ function updateProd() {
     const produtoName = document.getElementById("inpuNome").value;
     const produtoPreco = document.getElementById("inpuPreco").value;
     const produtoQuantidade = document.getElementById("inpuQuantidade").value;
+    const urlBase="https://davialp.000webhostapp.com/";
     const usuarioAtualizado = {
         nome: produtoName,
         preco: produtoPreco,
         quantidade: produtoQuantidade
     };
 
-    fetch('/backend/produtos.php?id=' + prodId, { 
+    fetch(`${urlBase}backend/produtos.php?id=` + prodId, { 
         method: 'PUT',
         headers: {
             'Content-Type': 'application/json'

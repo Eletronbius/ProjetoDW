@@ -1,7 +1,8 @@
 function deleteProd() {
     var token = sessionStorage.getItem('token');
     const prodId = document.getElementById("getProdId").value;
-    fetch('/backend/produtos.php?id=' + prodId, {
+    const urlBase="https://davialp.000webhostapp.com/";
+    fetch(`${urlBase}backend/produtos.php?id=` + prodId, {
         method: 'DELETE',
         headers: {
             'Authorization':  token,

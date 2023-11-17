@@ -3,6 +3,7 @@ function loginUser() {
     const emailUsuario = document.getElementById('EmailUser').value;
     const senhaUsuario = document.getElementById('SenhaUser').value;
     const lembrar = document.getElementById("lembrar").checked;
+    const urlBase="https://davialp.000webhostapp.com/";
     if (!emailUsuario) {
         alert("Por favor, insira um Email!");
         return;
@@ -14,7 +15,7 @@ function loginUser() {
         lembrar: lembrar
     };
 
-    fetch('/backend/login.php', { 
+    fetch(`${urlBase}backend/login.php`, { 
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'

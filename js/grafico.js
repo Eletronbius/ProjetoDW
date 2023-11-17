@@ -1,6 +1,7 @@
 function getAll() {
     var token = sessionStorage.getItem('token');
-    fetch('/backend/venda.php', {
+    const urlBase="https://davialp.000webhostapp.com/";
+    fetch(`${urlBase}backend/venda.php`, {
         method: 'GET',
         headers: {
             'Authorization':  token,

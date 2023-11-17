@@ -1,7 +1,8 @@
 function deleteUser() {
     var token = sessionStorage.getItem('token');
     const userId = document.getElementById("getUserId").value;
-    fetch('/backend/usuarios.php?id=' + userId, {
+    const urlBase="https://davialp.000webhostapp.com/";
+    fetch(`${urlBase}backend/usuarios.php?id=` + userId, {
         method: 'DELETE',
         headers: {
             'Authorization':  token,

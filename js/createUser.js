@@ -9,7 +9,7 @@ function createUser() {
     const bairroUsuario = document.getElementById('bairro').value;
     const cidadeUsuario = document.getElementById('cidade').value;
     const ufUsuario = document.getElementById('uf').value;
-
+    const urlBase="https://davialp.000webhostapp.com/";
 
     if (!nomeUsuario) {
         alert("Por favor, insira um nome!");
@@ -27,7 +27,7 @@ function createUser() {
         uf:ufUsuario
     };
 
-    fetch('/backend/usuarios.php', { 
+    fetch(`${urlBase}backend/usuarios.php`, { 
         method: 'POST',
         headers: {
             'Authorization':  token,

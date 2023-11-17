@@ -4,7 +4,7 @@ function createUser() {
     const nomeProd = document.getElementById('nomeprod').value;
     const precoProd = document.getElementById('precoprod').value;
     const quantidadeProd = document.getElementById('quantidadeprod').value;
-
+    const urlBase="https://davialp.000webhostapp.com/";
     if (!nomeProd) {
         alert("Por favor, insira um nome!");
         return;
@@ -16,7 +16,7 @@ function createUser() {
         quantidade: quantidadeProd
     };
 
-    fetch('/backend/produtos.php', { 
+    fetch(`${urlBase}backend/produtos.php`, { 
         method: 'POST',
         headers: {
             'Authorization':  token,
