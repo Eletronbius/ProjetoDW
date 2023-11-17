@@ -5,8 +5,7 @@ require "../vendor/autoload.php";
 use App\Controller\UserController;
 use App\Controller\AutorizadoController;
 $users = new UserController();
-$autorizado= new AutorizadoController();
-$autorizado->autorizado();
+
 
 $body = json_decode(file_get_contents('php://input'), true);
 $id=isset($_GET['id'])?$_GET['id']:'';

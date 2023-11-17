@@ -21,8 +21,8 @@ class AutorizadoController{
     header('Access-Control-Allow-Headers: Content-Type');
     header('Cache-Control: no-cache, no-store, must-revalidate');
 
-    $this->verificaIP();
-    //$this->verificaOrigem();
+    //$this->verificaIP();
+    $this->verificaOrigem();
   }
   public function verificaIP(){
     if (!in_array($_SERVER['REMOTE_ADDR'],  $this->ips_permitidos)) {
