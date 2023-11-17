@@ -103,7 +103,7 @@ CREATE TABLE `users` (
 
 LOCK TABLES `users` WRITE;
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
-INSERT INTO `users` VALUES (27,'Davi','davi@gmail.com','$2y$10$DYvhAzMJe15GWMEvfkNSCOhZVYn02PD0p2fVCS8p1oU0L6JE8CLAy',1),(28,'Julinho','julinhozika@yahoo.com.br','$2y$10$ZrNLfE1LrAmnIa6Xv62TwOoD4O2fdkjlkpXFz.wml8Dz29YzouEYW',2),(29,'Lauro','laurosigma@hotmail.com','$2y$10$lQtJnq0Vc.4gz48sOOoR5uT2/jSeBz1Ap2x1ZYZWDhDNo3unmG3K6',1);
+INSERT INTO `users` VALUES (27,'Davi','davi@gmail.com','$2y$10$DYvhAzMJe15GWMEvfkNSCOhZVYn02PD0p2fVCS8p1oU0L6JE8CLAy',2),(28,'Julinho','julinhozika@yahoo.com.br','$2y$10$ZrNLfE1LrAmnIa6Xv62TwOoD4O2fdkjlkpXFz.wml8Dz29YzouEYW',1),(29,'Lauro','laurosigma@hotmail.com','$2y$10$lQtJnq0Vc.4gz48sOOoR5uT2/jSeBz1Ap2x1ZYZWDhDNo3unmG3K6',1);
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -170,7 +170,7 @@ CREATE TABLE `perfil_permissoes` (
 
 LOCK TABLES `perfil_permissoes` WRITE;
 /*!40000 ALTER TABLE `perfil_permissoes` DISABLE KEYS */;
-INSERT INTO `perfil_permissoes` VALUES (2,1),(2,2),(2,3),(2,4),(2,5),(2,6),(2,7),(2,8),(2,9),(1,4),(1,5),(1,6);
+INSERT INTO `perfil_permissoes` VALUES (2,9),(2,2),(2,3),(2,4),(2,5),(2,6),(2,7),(2,8),(2,1),(2,10),(2,11),(2,12),(1,9),(1,7),(1,5),(1,6),(1,4);
 /*!40000 ALTER TABLE `perfil_permissoes` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -191,7 +191,7 @@ CREATE TABLE `permissoes` (
 
 LOCK TABLES `permissoes` WRITE;
 /*!40000 ALTER TABLE `permissoes` DISABLE KEYS */;
-INSERT INTO `permissoes` VALUES (1,'CadastrarUsuario'),(2,'ExcluirUsuario'),(3,'EditarUsuario'),(4,'CadastrarProduto'),(5,'ExcluirProduto'),(6,'EditarProduto'),(7,'CadastrarEndereco'),(8,'ExcluirEndereco'),(9,'EditarEndereco');
+INSERT INTO `permissoes` VALUES (1,'criaruser'),(2,'buscauser'),(3,'todosuser'),(4,'criarprod'),(5,'buscaprod'),(6,'todosprod'),(7,'MenuProdutos'),(8,'MenuUsuarios'),(9,'MenuPrincipal'),(10,'criarvenda'),(11,'grafico'),(12,'Gerenciar');
 /*!40000 ALTER TABLE `permissoes` ENABLE KEYS */;
 UNLOCK TABLES;
 DROP VIEW IF EXISTS `produtos_por_usuario`;
