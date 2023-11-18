@@ -20,6 +20,22 @@ use `Banco`;
 --
 -- Table structure for table `endereco`
 --
+DROP TABLE IF EXISTS `log_endereco`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `log_endereco` (
+  `logid`int Not NULL AUTO_INCREMENT primary key,
+  `Acao` varchar(200) not null,
+  `Data` datetime not null default current_timestamp,
+  `id` int Not NULL,
+  `cep` varchar(90) DEFAULT NULL,
+  `rua` varchar(210) DEFAULT NULL,
+  `bairro` varchar(110) DEFAULT NULL,
+  `cidade` varchar(90) DEFAULT NULL,
+  `uf` varchar(20) DEFAULT NULL,
+  `iduser` int DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
 DROP TABLE IF EXISTS `endereco`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
@@ -48,6 +64,19 @@ UNLOCK TABLES;
 --
 -- Table structure for table `produtos`
 --
+DROP TABLE IF EXISTS `log_produtos`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `log_produtos` (
+  `logid`int Not NULL AUTO_INCREMENT primary key,
+  `Acao` varchar(200) not null,
+  `Data` datetime not null default current_timestamp,
+  `id` int not NULL,
+  `nome` text DEFAULT NULL,
+  `preco` decimal(4,2) DEFAULT NULL,
+  `quantidade` int DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
 DROP TABLE IF EXISTS `produtos`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
@@ -76,7 +105,23 @@ UNLOCK TABLES;
 --
 
 
-
+DROP TABLE IF EXISTS `log_users`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `log_users` (
+  `logid`int Not NULL AUTO_INCREMENT primary key,
+  `Acao` varchar(200) not null,
+  `Data` datetime not null default current_timestamp,
+  `id` int not NULL auto_increment,
+  `nome` text not null,
+  `email` varchar(200) DEFAULT NULL,
+  `senha` text DEFAULT NULL,
+  `perfilid` int DEFAULT NULL,
+  UNIQUE KEY `email` (`email`),
+  KEY `log_usuario_ibfk_1` (`perfilid`),
+  CONSTRAINT `log_usuario_ibfk_1` FOREIGN KEY (`perfilid`) REFERENCES `perfil` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
 
 
@@ -111,6 +156,18 @@ UNLOCK TABLES;
 -- Table structure for table `vendas`
 --
 
+DROP TABLE IF EXISTS `log_vendas`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `log_vendas` (
+  `logid`int Not NULL AUTO_INCREMENT primary key,
+  `Acao` varchar(200) not null,
+  `Data` datetime not null default current_timestamp,
+  `id_usuario` int DEFAULT NULL,
+  `id_produto` int DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
 DROP TABLE IF EXISTS `vendas`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
@@ -129,6 +186,18 @@ LOCK TABLES `vendas` WRITE;
 INSERT INTO `vendas` VALUES (13,12),(13,11),(25,13),(25,13),(25,13),(25,13),(17,11),(27,15),(27,14),(28,16),(28,17),(29,14),(29,15),(29,16),(29,17),(28,17);
 /*!40000 ALTER TABLE `vendas` ENABLE KEYS */;
 UNLOCK TABLES;
+DROP TABLE IF EXISTS `log_perfil`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `log_perfil` (
+  `logid`int Not NULL AUTO_INCREMENT primary key,
+  `Acao` varchar(200) not null,
+  `Data` datetime not null default current_timestamp,
+  `id` int NOT NULL AUTO_INCREMENT,
+  `nome` varchar(200) NOT NULL,
+  UNIQUE KEY `nome` (`nome`)
+) ENGINE=InnoDB CHARSET=utf8mb4;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
 DROP TABLE IF EXISTS `perfil`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
@@ -150,6 +219,20 @@ LOCK TABLES `perfil` WRITE;
 INSERT INTO `perfil` VALUES (1,'X'),(2,'Y');
 /*!40000 ALTER TABLE `perfil` ENABLE KEYS */;
 UNLOCK TABLES;
+DROP TABLE IF EXISTS `log_perfil_permissoes`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `log_perfil_permissoes` (
+  `logid`int Not NULL AUTO_INCREMENT primary key,
+  `Acao` varchar(200) not null,
+  `Data` datetime not null default current_timestamp,
+  `perfilid` int NOT NULL,
+  `permissao_id` int NOT NULL,
+  KEY `log_perfil_permissoes_ibfk_2` (`permissao_id`),
+  CONSTRAINT `log_perfil_permissoes_ibfk_1` FOREIGN KEY (`perfilid`) REFERENCES `perfil` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `log_perfil_permissoes_ibfk_2` FOREIGN KEY (`permissao_id`) REFERENCES `permissoes` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
 DROP TABLE IF EXISTS `perfil_permissoes`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
@@ -174,6 +257,18 @@ INSERT INTO `perfil_permissoes` VALUES (2,9),(2,2),(2,3),(2,4),(2,5),(2,6),(2,7)
 /*!40000 ALTER TABLE `perfil_permissoes` ENABLE KEYS */;
 UNLOCK TABLES;
 
+  DROP TABLE IF EXISTS `log_permissoes`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `log_permissoes` (
+  `logid`int Not NULL AUTO_INCREMENT primary key,
+  `Acao` varchar(200) not null,
+  `Data` datetime not null default current_timestamp,
+  `id` int NOT NULL AUTO_INCREMENT,
+  `nome` varchar(200) NOT NULL,
+  UNIQUE KEY `nome` (`nome`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+/*!40101 SET character_set_client = @saved_cs_client */;
 DROP TABLE IF EXISTS `permissoes`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
