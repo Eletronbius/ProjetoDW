@@ -1,48 +1,52 @@
 document.addEventListener("DOMContentLoaded",validaToken());
 
- function validaToken() {
+ async function validaToken() {
     const token = sessionStorage.getItem('token');
     try {
-        const response = fetch("/backend/login.php", {
+         fetch("/backend/login.php", {
             method: 'GET',
             headers: {
                 'Authorization':  token
             }
-        }  .then(response => response.json()));
-      
-        const jsonResponse = response;
-        if (!jsonResponse.status) {  
-            window.location.href = 'index.html';  
-           } 
-        const telasPermitidas = jsonResponse.tela.map(tela => tela.nome);
-        const nomePaginaAtual = window.location.pathname.split('/').pop().replace('.html', '');
-        const itensMenu = document.querySelectorAll('a.item');
-        itensMenu.forEach(item => {
-            const nomeTela = item.href.split('/').pop().replace('.html', ''); 
-            if (telasPermitidas.includes(nomeTela)) {
-                item.style.display = 'flex'; 
-            } else {
-                item.style.display = 'none'; 
-            }
-        });
-
-        if (!telasPermitidas.includes(nomePaginaAtual)) {
-            if (telasPermitidas.length > 0) {  
-                console.log(telasPermitidas[0] + '.html')
-                window.location.href = telasPermitidas[0] + '.html';
-            } else {
-                alert("Token inválido ou expirado!");
+        })
+        .then(response=>{return response.json();})
+        .then(jsonResponse=>{
+            if (!jsonResponse.status) {  
                 window.location.href = 'index.html';  
-            }
-        }
+               } 
+               const telasPermitidas = jsonResponse.tela.map(tela => tela.nome);
+               const nomePaginaAtual = window.location.pathname.split('/').pop().replace('.html', '');
+               const itensMenu = document.querySelectorAll('a.item');
+               itensMenu.forEach(item => {
+                   const nomeTela = item.href.split('/').pop().replace('.html', ''); 
+                   if (telasPermitidas.includes(nomeTela)) {
+                       item.style.display = 'flex'; 
+                   } else {
+                       item.style.display = 'none'; 
+                   }
+               });
+       
+               if (!telasPermitidas.includes(nomePaginaAtual)) {
+                   if (telasPermitidas.length > 0) {  
+                       console.log(telasPermitidas[0] + '.html')
+                       window.location.href = telasPermitidas[0] + '.html';
+                   } else {
+                       alert("Token inválido ou expirado!");
+                       window.location.href = 'index.html';  
+                   }
+               }
+               document.body.style.display = 'flex';
+               if (!response.ok || !jsonResponse.status) {
+                   redirecioneLogin(jsonResponse.message);
+               }
+        })
+        /* const jsonResponse = response.json(); */
 
-        document.body.style.display = 'flex';
-        if (!response.ok || !jsonResponse.status) {
-            redirecioneLogin(jsonResponse.message);
-        }
     } catch (error) {
         console.error("Erro ao validar token:", error);
     }
+    
+
     }
 validaToken();
 
