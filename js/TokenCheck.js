@@ -2,16 +2,15 @@ document.addEventListener("DOMContentLoaded",validaToken());
 
  function validaToken() {
     const token = sessionStorage.getItem('token');
-    const urlBase="https://davialp.000webhostapp.com/";
     try {
-        const response = fetch(`${urlBase}backend/login.php`, {
+        const response = fetch("/backend/login.php", {
             method: 'GET',
             headers: {
                 'Authorization':  token
             }
-        });
-
-        const jsonResponse = response.json();
+        }  .then(response => response.json()));
+      
+        const jsonResponse = response;
         if (!jsonResponse.status) {  
             window.location.href = 'index.html';  
            } 
@@ -54,5 +53,3 @@ function redirecioneLogin() {
     alert("Token inválido ou expirado!");
     window.location.href = "index.html";
 }
-
-
