@@ -103,9 +103,13 @@ populateDropdown();
             
                 const removeBtn = document.createElement('button');
                 removeBtn.textContent = "Remover";
-                removeBtn.classList.add("w3-button")
-                removeBtn.classList.add("w3-round")
-                removeBtn.classList.add("w3-border")
+                removeBtn.classList.add("bg-sky-400");
+                removeBtn.classList.add("rounded-sm");
+                removeBtn.classList.add("text-slate-50");
+                removeBtn.classList.add("p-2");
+                removeBtn.classList.add("transition-all");
+                removeBtn.classList.add("duration-200");
+                removeBtn.classList.add("hover:bg-sky-500");
                 removeBtn.addEventListener('click', async function() {
                     const result = await deletePermissao(perfilId, permissao.nome);
                     if (result.status) {
@@ -145,9 +149,10 @@ populateDropdown();
             
                 const removeBtn = document.createElement('button');
                 removeBtn.textContent = "Remover";
-                removeBtn.classList.add("w3-button")
-                removeBtn.classList.add("w3-round")
-                removeBtn.classList.add("w3-border")
+                removeBtn.classList.add("bg-sky-400");
+                removeBtn.classList.add("rounded-sm");
+                removeBtn.classList.add("text-slate-50");
+                removeBtn.classList.add("p-2");
                 removeBtn.addEventListener('click', async function() {
                     const result = await deletePermissao(perfilId, permissaoName);
                     if (result.status) {

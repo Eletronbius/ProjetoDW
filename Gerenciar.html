@@ -16,11 +16,9 @@
   </style>
   <script src="js/TokenCheck.js"></script>
 </head>
-<body>
+<body class="bg-gray-100">
   <a id="LogOff" href="" class="transition duration-200 text-slate-50 absolute bottom-0 left-0 bg-red-500 px-8 py-2 mb-2 ml-2 rounded-lg hover:bg-red-400 hover:shadow-md hover:shadow-red-400/50">Sair</a>
   <a href="MenuPrincipal.html" class="transition duration-200 text-slate-50 absolute top-0 left-0 bg-sky-500 px-8 py-2 mt-2 ml-2 rounded-lg hover:bg-sky-400 hover:shadow-md hover:shadow-sky-400/50">Voltar</a>
-  <div class="w3-bar w3-black" id="myDIV">
-  </div>
   <div class="w3-container w3-display-middle">
     <div class="w3-row-padding">
           <div class="w3-card-4 w3-container w3-margin-bottom">
@@ -31,16 +29,17 @@
           <div class="w3-card-4 w3-container w3-margin-bottom">
             <h2>Gerenciar Permissões</h2>
             <label for="perfilSelect">Perfil:</label>
-            <select id="perfilSelect" required>
+            <select id="perfilSelect" class="my-2 p-4 bg-gray-100 rounded-lg" required>
               <option value="">Selecione</option>
             </select>
             <br>
             <label for="permissaoSelect">Permissão:</label>
-            <select id="permissaoSelect" required>
+            <select id="permissaoSelect" class="my-2 p-4 bg-gray-100 rounded-lg"  required>
                 <option value="">Selecione</option>
             </select>
 
-            <button id="addPermissaoBtn" class="w3-button w3-round w3-border w3-border-blue">Adicionar Permissão</button>
+            <button id="addPermissaoBtn" class="my-2 mb-4 bg-sky-400 rounded-sm text-slate-50 p-2 transition-all duration-200 hover:bg-sky-500">
+              Adicionar Permissão</button>
           </div>
        
   <div class="w3-card-4 w3-container w3-margin-bottom  overflow-y-auto">
