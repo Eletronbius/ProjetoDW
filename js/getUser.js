@@ -78,7 +78,6 @@ function getUser() {
                 });
                 li.appendChild(removeBtn);
                 ul.appendChild(li);
-                
             });
             endList.appendChild(ul);
         } 
