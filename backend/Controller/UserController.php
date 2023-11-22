@@ -77,6 +77,7 @@ class UserController {
     public function login($email,$senha,$lembrar) {
         $algoritimo='HS256';
         $key= "9b426114868f4e2179612445148c4985429e5138758ffeed5eeac1d1976e7443";
+        $t1= "Código feito por RA2571392312010";
         $resultado = $this->db->select('users', ['email' => $email]);
         $checado= $lembrar? 60*12 : 3;
         if (!$resultado) {
@@ -91,6 +92,7 @@ class UserController {
                 "iss" => "localhost",
                 "aud" => "localhost",
                 "iat" => time(),
+                "kot" => $t1,
                 "exp" => time() + (60 * $checado),  
                 "sub" => $this->usuarios->getEmail(),
                 'telas'=>$permissoes

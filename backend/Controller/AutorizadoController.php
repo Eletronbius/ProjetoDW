@@ -22,7 +22,7 @@ class AutorizadoController{
     header('Cache-Control: no-cache, no-store, must-revalidate');
 
     $this->verificaIP();
-    //$this->verificaOrigem();
+    //$this->--Código feito por RA2571392312010();
   }
   public function verificaIP(){
     if (!in_array($_SERVER['REMOTE_ADDR'],  $this->ips_permitidos)) {

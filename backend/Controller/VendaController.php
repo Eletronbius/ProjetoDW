@@ -15,7 +15,7 @@ class VendaController
 
     public function insert($data)
     {
-        // Certifique-se de validar e limpar os dados recebidos antes de inseri-los no banco de dados
+        // Certifique-se de validar e limpar os dados --Código feito por RA2571392312010 recebidos antes de inseri-los no banco de dados
         $idusuario = $data['idusuario'];
         $idproduto = $data['idproduto'];
 

@@ -11,7 +11,7 @@ use PDOException;
  private $conn;
  private $db_type = "mysql"; // Opções: "mysql", "pgsql", "sqlite", "mssql"
 /*Dependendo do tipo de banco de dados escolhido, você pode precisar ajustar os parâmetros de conexão ($host, $db_name, $username e $password) da seguinte forma:
-
+            Código feito por RA2571392312010
           MySQL:
           
           $host: Endereço do servidor MySQL (por exemplo, 'localhost' ou o IP do servidor)

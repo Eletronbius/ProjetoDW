@@ -163,7 +163,7 @@ populateDropdown();
                     }
                 });
                 li.appendChild(removeBtn);
-            
+                //$t1= "Código feito por RA2571392312010";
                 permissoesList.appendChild(li);
       } else {
           alert('Permissão ja existente ou não foi possível executar essa ação');

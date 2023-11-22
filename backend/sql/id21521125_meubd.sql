@@ -35,7 +35,7 @@ END$$
 
 DELIMITER ;
 
--- --------------------------------------------------------
+
 
 --
 -- Estrutura para tabela `endereco`
@@ -75,7 +75,7 @@ CREATE TRIGGER `UpdateEnd` AFTER UPDATE ON `endereco` FOR EACH ROW insert into l
 $$
 DELIMITER ;
 
--- --------------------------------------------------------
+
 
 --
 -- Estrutura para tabela `log_endereco`
@@ -101,7 +101,7 @@ CREATE TABLE `log_endereco` (
 INSERT INTO `log_endereco` (`logid`, `Acao`, `Data`, `id`, `cep`, `rua`, `bairro`, `cidade`, `uf`, `iduser`) VALUES
 (2, 'Deletado', '2023-11-18 20:27:25', 2, '08030560', 'Rua Alice Dilon Braga', 'Vila Curuçá', 'São Paulo', 'SP', 24);
 
--- --------------------------------------------------------
+
 
 --
 -- Estrutura para tabela `log_perfil`
@@ -115,7 +115,7 @@ CREATE TABLE `log_perfil` (
   `nome` varchar(200) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
--- --------------------------------------------------------
+
 
 --
 -- Estrutura para tabela `log_perfil_permissoes`
@@ -129,7 +129,7 @@ CREATE TABLE `log_perfil_permissoes` (
   `permissao_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
--- --------------------------------------------------------
+
 
 --
 -- Estrutura para tabela `log_permissoes`
@@ -143,7 +143,7 @@ CREATE TABLE `log_permissoes` (
   `nome` varchar(200) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
--- --------------------------------------------------------
+
 
 --
 -- Estrutura para tabela `log_produtos`
@@ -169,8 +169,8 @@ INSERT INTO `log_produtos` (`logid`, `Acao`, `Data`, `id`, `nome`, `preco`, `qua
 (3, 'Alterado', '2023-11-18 20:49:40', 19, 'algo', 1.00, 22),
 (4, 'Deletado', '2023-11-18 20:50:01', 19, 'algo', 3.00, 22);
 
--- --------------------------------------------------------
 
+--Código feito por RA2571392312010
 --
 -- Estrutura para tabela `log_users`
 --
@@ -193,7 +193,7 @@ CREATE TABLE `log_users` (
 INSERT INTO `log_users` (`logid`, `Acao`, `Data`, `id`, `nome`, `email`, `senha`, `perfilid`) VALUES
 (1, 'Alterado', '2023-11-18 20:51:22', 30, 'BielLol', 'bibibilu@hotmail.com', '$2y$10$Ki15ywGeeOoTLwvxBdO1DuB3JmlkO1izGWgKHL6gcm6GAti0P6wQW', 1);
 
--- --------------------------------------------------------
+
 
 --
 -- Estrutura para tabela `log_vendas`
@@ -207,7 +207,7 @@ CREATE TABLE `log_vendas` (
   `id_produto` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
--- --------------------------------------------------------
+
 
 --
 -- Estrutura para tabela `perfil`
@@ -240,7 +240,7 @@ values("Alterado",OLD.id,OLD.nome)
 $$
 DELIMITER ;
 
--- --------------------------------------------------------
+
 
 --
 -- Estrutura para tabela `perfil_permissoes`
@@ -287,8 +287,8 @@ CREATE TRIGGER `UpdatePerfilPerm` AFTER UPDATE ON `perfil_permissoes` FOR EACH R
 values("Alterado",OLD.perfilid,OLD.permissao_id)
 $$
 DELIMITER ;
+--Código feito por RA2571392312010
 
--- --------------------------------------------------------
 
 --
 -- Estrutura para tabela `permissoes`
@@ -331,7 +331,7 @@ values("Alterado",OLD.id,OLD.nome)
 $$
 DELIMITER ;
 
--- --------------------------------------------------------
+
 
 --
 -- Estrutura para tabela `produtos`
@@ -368,7 +368,7 @@ values("Alterado",OLD.id,OLD.nome,OLD.preco,OLD.quantidade)
 $$
 DELIMITER ;
 
--- --------------------------------------------------------
+
 
 --
 -- Estrutura stand-in para view `produtos_por_usuario`
@@ -380,7 +380,7 @@ CREATE TABLE `produtos_por_usuario` (
 ,`quantidade_produtos` bigint(21)
 );
 
--- --------------------------------------------------------
+
 
 --
 -- Estrutura para tabela `users`
@@ -418,7 +418,7 @@ values("Alterado",OLD.id,OLD.nome,OLD.email,OLD.senha,OLD.perfilid)
 $$
 DELIMITER ;
 
--- --------------------------------------------------------
+
 
 --
 -- Estrutura para tabela `vendas`
@@ -451,7 +451,7 @@ INSERT INTO `vendas` (`id_usuario`, `id_produto`) VALUES
 (29, 17),
 (28, 17);
 
--- --------------------------------------------------------
+
 
 --
 -- Estrutura para view `produtos_por_usuario`

@@ -42,5 +42,6 @@ function createUser() {
         } 
        
     })
+    //Código feito por RA2571392312010
     .catch(error => alert('Erro na requisição: ' + error));
 }

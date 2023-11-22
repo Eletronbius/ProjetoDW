@@ -63,7 +63,7 @@ UNLOCK TABLES;
 
 --
 -- Table structure for table `produtos`
---
+----Código feito por RA2571392312010
 DROP TABLE IF EXISTS `log_produtos`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
@@ -144,7 +144,7 @@ CREATE TABLE `users` (
 
 --
 -- Dumping data for table `users`
---
+----Código feito por RA2571392312010
 
 LOCK TABLES `users` WRITE;
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
@@ -280,7 +280,7 @@ CREATE TABLE `permissoes` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
---
+----Código feito por RA2571392312010
 -- Dumping data for table `permissoes`
 --
 
