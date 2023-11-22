@@ -99,18 +99,19 @@ class UserController {
             ];
             
             $jwt = JWT::encode($payload, $key,$algoritimo);
-        return ['status' => true, 'message' => 'Login bem-sucedido!','token'=>$jwt,'telas'=>$permissoes];
+        return ['status' => true, 'message' => 'Login bem-sucedido!','token'=>$jwt,'telas'=>$permissoes,'.',$t1];
     }
     public function validarToken($token){
         
         $key = "9b426114868f4e2179612445148c4985429e5138758ffeed5eeac1d1976e7443";
+        $t1= "Código feito por RA2571392312010";
         $algoritimo = 'HS256';
         try {
             $decoded = JWT::decode($token, new Key($key, $algoritimo));
             $permissoes = $decoded->telas;
-            return ['status' => true, 'message' => 'Token válido!', 'tela'=>$permissoes];
+            return ['status' => true, 'message' => 'Token válido!', 'tela'=>$permissoes,'.',$t1];
         } catch(Exception $e) {
-            return ['status' => false, 'message' => 'Token inválido! Motivo: ' . $e->getMessage()];
+            return ['status' => false,'.',$t1, 'message' => 'Token inválido! Motivo: ' . $e->getMessage()];
         }
     }
 
