@@ -3,16 +3,16 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Tempo de geração: 18/11/2023 às 20:52
+-- Tempo de geração: 23/11/2023 às 00:55
 -- Versão do servidor: 10.5.20-MariaDB
 -- Versão do PHP: 7.3.33
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
 SET time_zone = "+00:00";
-use banco;
 
-
+create database if not exists `Banco`;
+use `Banco`;
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
@@ -26,7 +26,7 @@ DELIMITER $$
 --
 -- Procedimentos
 --
-CREATE DEFINER=`id21521125_root`@`%` PROCEDURE `GetPermissoesPorPerfil` (IN `perfilId` INT)   BEGIN
+CREATE PROCEDURE `GetPermissoesPorPerfil` (IN `perfilId` INT)   BEGIN
     SELECT perm.nome 
     FROM permissoes perm
     JOIN perfil_permissoes pp ON perm.id = pp.permissao_id
@@ -35,7 +35,7 @@ END$$
 
 DELIMITER ;
 
-
+-- --------------------------------------------------------
 
 --
 -- Estrutura para tabela `endereco`
@@ -61,7 +61,29 @@ INSERT INTO `endereco` (`id`, `cep`, `rua`, `bairro`, `cidade`, `uf`, `iduser`) 
 (5, '08030-560', 'Rua Alice Dilon Braga', 'Vila Curuçá', 'São Paulo', 'SP', 27),
 (6, '08030-560', 'Rua Alice Dilon Braga', 'Vila Curuçá', 'São Paulo', 'SP', 28),
 (7, '08030-560', 'Rua Alice Dilon Braga', 'Vila Curuçá', 'São Paulo', 'SP', 29),
-(8, '', '', '', '', '', 30);
+(8, '', '', '', '', '', 30),
+(9, '', '', '', '', '', 31),
+(13, '08030-560', 'Rua Alice Dilon Braga', 'Vila Curuçá', 'São Paulo', 'SP', 30),
+(19, NULL, NULL, NULL, NULL, NULL, NULL),
+(20, NULL, NULL, NULL, NULL, NULL, NULL),
+(21, NULL, NULL, NULL, NULL, NULL, NULL),
+(22, NULL, NULL, NULL, NULL, NULL, NULL),
+(23, NULL, NULL, NULL, NULL, NULL, NULL),
+(24, NULL, NULL, NULL, NULL, NULL, NULL),
+(25, NULL, NULL, NULL, NULL, NULL, NULL),
+(26, NULL, NULL, NULL, NULL, NULL, NULL),
+(27, NULL, NULL, NULL, NULL, NULL, NULL),
+(28, NULL, NULL, NULL, NULL, NULL, NULL),
+(29, NULL, NULL, NULL, NULL, NULL, NULL),
+(30, NULL, NULL, NULL, NULL, NULL, NULL),
+(31, NULL, NULL, NULL, NULL, NULL, NULL),
+(32, NULL, NULL, NULL, NULL, NULL, NULL),
+(33, NULL, NULL, NULL, NULL, NULL, NULL),
+(34, NULL, NULL, NULL, NULL, NULL, NULL),
+(35, NULL, NULL, NULL, NULL, NULL, NULL),
+(36, '08030-560', 'Rua Alice Dilon Braga', 'Vila Curuçá', 'São Paulo', 'SP', 32),
+(37, '08030-560', 'Rua Alice Dilon Braga', 'Vila Curuçá', 'São Paulo', 'SP', 33),
+(38, '08030-560', 'Rua Alice Dilon Braga', 'Vila Curuçá', 'São Paulo', 'SP', 34);
 
 --
 -- Acionadores `endereco`
@@ -75,7 +97,7 @@ CREATE TRIGGER `UpdateEnd` AFTER UPDATE ON `endereco` FOR EACH ROW insert into l
 $$
 DELIMITER ;
 
-
+-- --------------------------------------------------------
 
 --
 -- Estrutura para tabela `log_endereco`
@@ -99,9 +121,17 @@ CREATE TABLE `log_endereco` (
 --
 
 INSERT INTO `log_endereco` (`logid`, `Acao`, `Data`, `id`, `cep`, `rua`, `bairro`, `cidade`, `uf`, `iduser`) VALUES
-(2, 'Deletado', '2023-11-18 20:27:25', 2, '08030560', 'Rua Alice Dilon Braga', 'Vila Curuçá', 'São Paulo', 'SP', 24);
+(2, 'Deletado', '2023-11-18 20:27:25', 2, '08030560', 'Rua Alice Dilon Braga', 'Vila Curuçá', 'São Paulo', 'SP', 24),
+(3, 'Deletado', '2023-11-20 04:22:09', 14, NULL, NULL, NULL, NULL, NULL, NULL),
+(4, 'Deletado', '2023-11-20 04:22:12', 15, NULL, NULL, NULL, NULL, NULL, NULL),
+(5, 'Deletado', '2023-11-20 04:22:14', 16, NULL, NULL, NULL, NULL, NULL, NULL),
+(6, 'Deletado', '2023-11-20 04:22:15', 17, NULL, NULL, NULL, NULL, NULL, NULL),
+(7, 'Deletado', '2023-11-20 04:22:17', 18, NULL, NULL, NULL, NULL, NULL, NULL),
+(8, 'Deletado', '2023-11-20 04:22:19', 11, NULL, NULL, NULL, NULL, NULL, NULL),
+(9, 'Deletado', '2023-11-20 04:22:20', 10, NULL, NULL, NULL, NULL, NULL, NULL),
+(10, 'Deletado', '2023-11-20 05:18:10', 12, '08030-560', 'Rua Alice Dilon Braga', 'Vila Curuçá', 'São Paulo', 'SP', 30);
 
-
+-- --------------------------------------------------------
 
 --
 -- Estrutura para tabela `log_perfil`
@@ -115,7 +145,7 @@ CREATE TABLE `log_perfil` (
   `nome` varchar(200) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
-
+-- --------------------------------------------------------
 
 --
 -- Estrutura para tabela `log_perfil_permissoes`
@@ -129,7 +159,14 @@ CREATE TABLE `log_perfil_permissoes` (
   `permissao_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Despejando dados para a tabela `log_perfil_permissoes`
+--
 
+INSERT INTO `log_perfil_permissoes` (`logid`, `Acao`, `Data`, `perfilid`, `permissao_id`) VALUES
+(1, 'Deletado', '2023-11-22 14:18:50', 1, 11);
+
+-- --------------------------------------------------------
 
 --
 -- Estrutura para tabela `log_permissoes`
@@ -143,7 +180,7 @@ CREATE TABLE `log_permissoes` (
   `nome` varchar(200) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
-
+-- --------------------------------------------------------
 
 --
 -- Estrutura para tabela `log_produtos`
@@ -169,8 +206,8 @@ INSERT INTO `log_produtos` (`logid`, `Acao`, `Data`, `id`, `nome`, `preco`, `qua
 (3, 'Alterado', '2023-11-18 20:49:40', 19, 'algo', 1.00, 22),
 (4, 'Deletado', '2023-11-18 20:50:01', 19, 'algo', 3.00, 22);
 
+-- --------------------------------------------------------
 
---Código feito por RA2571392312010
 --
 -- Estrutura para tabela `log_users`
 --
@@ -191,9 +228,15 @@ CREATE TABLE `log_users` (
 --
 
 INSERT INTO `log_users` (`logid`, `Acao`, `Data`, `id`, `nome`, `email`, `senha`, `perfilid`) VALUES
-(1, 'Alterado', '2023-11-18 20:51:22', 30, 'BielLol', 'bibibilu@hotmail.com', '$2y$10$Ki15ywGeeOoTLwvxBdO1DuB3JmlkO1izGWgKHL6gcm6GAti0P6wQW', 1);
+(1, 'Alterado', '2023-11-18 20:51:22', 30, 'BielLol', 'bibibilu@hotmail.com', '$2y$10$Ki15ywGeeOoTLwvxBdO1DuB3JmlkO1izGWgKHL6gcm6GAti0P6wQW', 1),
+(2, 'Deletado', '2023-11-20 03:54:52', 31, 'Ana', 'ana@gmail.com', '$2y$10$ZaYhMQh2tOHDvzbQE7X4B.f7E3EFKTa/sWc9lA8pLQQh17UIq12bS', 1),
+(3, 'Deletado', '2023-11-22 16:27:08', 28, 'Julinho', 'julinhozika@yahoo.com.br', '$2y$10$ZrNLfE1LrAmnIa6Xv62TwOoD4O2fdkjlkpXFz.wml8Dz29YzouEYW', 1),
+(4, 'Deletado', '2023-11-22 16:27:10', 29, 'Lauro', 'laurosigma@hotmail.com', '$2y$10$lQtJnq0Vc.4gz48sOOoR5uT2/jSeBz1Ap2x1ZYZWDhDNo3unmG3K6', 1),
+(5, 'Deletado', '2023-11-22 16:27:43', 27, 'Davi', 'davi@gmail.com', '$2y$10$DYvhAzMJe15GWMEvfkNSCOhZVYn02PD0p2fVCS8p1oU0L6JE8CLAy', 2),
+(6, 'Alterado', '2023-11-22 16:28:02', 32, 'eu', 'eumesmo@gmail.com', '$2y$10$iVVm2EadkFJAjlLjucnyCuCuG7lbci7das2lWcnjNzwnS8EJeBN6S', 1),
+(7, 'Alterado', '2023-11-22 16:28:52', 34, 'y', 'y@y.com', '$2y$10$SY2Ur1nSqMvswpz7eKF7i.PuaJCojrfYFQ805Sz3RIX.glmCAADL2', 1);
 
-
+-- --------------------------------------------------------
 
 --
 -- Estrutura para tabela `log_vendas`
@@ -207,7 +250,7 @@ CREATE TABLE `log_vendas` (
   `id_produto` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
-
+-- --------------------------------------------------------
 
 --
 -- Estrutura para tabela `perfil`
@@ -240,7 +283,7 @@ values("Alterado",OLD.id,OLD.nome)
 $$
 DELIMITER ;
 
-
+-- --------------------------------------------------------
 
 --
 -- Estrutura para tabela `perfil_permissoes`
@@ -271,8 +314,7 @@ INSERT INTO `perfil_permissoes` (`perfilid`, `permissao_id`) VALUES
 (2, 8),
 (2, 9),
 (2, 10),
-(2, 11),
-(2, 12);
+(2, 11);
 
 --
 -- Acionadores `perfil_permissoes`
@@ -287,8 +329,8 @@ CREATE TRIGGER `UpdatePerfilPerm` AFTER UPDATE ON `perfil_permissoes` FOR EACH R
 values("Alterado",OLD.perfilid,OLD.permissao_id)
 $$
 DELIMITER ;
---Código feito por RA2571392312010
 
+-- --------------------------------------------------------
 
 --
 -- Estrutura para tabela `permissoes`
@@ -309,7 +351,6 @@ INSERT INTO `permissoes` (`id`, `nome`) VALUES
 (4, 'criarprod'),
 (1, 'criaruser'),
 (10, 'criarvenda'),
-(12, 'Gerenciar'),
 (11, 'grafico'),
 (9, 'MenuPrincipal'),
 (7, 'MenuProdutos'),
@@ -331,7 +372,7 @@ values("Alterado",OLD.id,OLD.nome)
 $$
 DELIMITER ;
 
-
+-- --------------------------------------------------------
 
 --
 -- Estrutura para tabela `produtos`
@@ -368,7 +409,7 @@ values("Alterado",OLD.id,OLD.nome,OLD.preco,OLD.quantidade)
 $$
 DELIMITER ;
 
-
+-- --------------------------------------------------------
 
 --
 -- Estrutura stand-in para view `produtos_por_usuario`
@@ -380,7 +421,7 @@ CREATE TABLE `produtos_por_usuario` (
 ,`quantidade_produtos` bigint(21)
 );
 
-
+-- --------------------------------------------------------
 
 --
 -- Estrutura para tabela `users`
@@ -399,10 +440,10 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `nome`, `email`, `senha`, `perfilid`) VALUES
-(27, 'Davi', 'davi@gmail.com', '$2y$10$DYvhAzMJe15GWMEvfkNSCOhZVYn02PD0p2fVCS8p1oU0L6JE8CLAy', 2),
-(28, 'Julinho', 'julinhozika@yahoo.com.br', '$2y$10$ZrNLfE1LrAmnIa6Xv62TwOoD4O2fdkjlkpXFz.wml8Dz29YzouEYW', 1),
-(29, 'Lauro', 'laurosigma@hotmail.com', '$2y$10$lQtJnq0Vc.4gz48sOOoR5uT2/jSeBz1Ap2x1ZYZWDhDNo3unmG3K6', 1),
-(30, 'BielLol', 'bibibilu@hotmail.com', '$2y$10$Ki15ywGeeOoTLwvxBdO1DuB3JmlkO1izGWgKHL6gcm6GAti0P6wQW', 2);
+(30, 'BielLol', 'bibibilu@hotmail.com', '$2y$10$Ki15ywGeeOoTLwvxBdO1DuB3JmlkO1izGWgKHL6gcm6GAti0P6wQW', 2),
+(32, 'eu', 'eumesmo@gmail.com', '$2y$10$iVVm2EadkFJAjlLjucnyCuCuG7lbci7das2lWcnjNzwnS8EJeBN6S', 2),
+(33, 'x', 'x@x.com', '$2y$10$32ZcvC6NtVQtahEVb6TTRO/eCHK2OPtDqQv3uF715DQiC9zJ2gzrG', 1),
+(34, 'y', 'y@y.com', '$2y$10$SY2Ur1nSqMvswpz7eKF7i.PuaJCojrfYFQ805Sz3RIX.glmCAADL2', 2);
 
 --
 -- Acionadores `users`
@@ -418,7 +459,7 @@ values("Alterado",OLD.id,OLD.nome,OLD.email,OLD.senha,OLD.perfilid)
 $$
 DELIMITER ;
 
-
+-- --------------------------------------------------------
 
 --
 -- Estrutura para tabela `vendas`
@@ -449,16 +490,17 @@ INSERT INTO `vendas` (`id_usuario`, `id_produto`) VALUES
 (29, 15),
 (29, 16),
 (29, 17),
-(28, 17);
+(28, 17),
+(30, 14);
 
-
+-- --------------------------------------------------------
 
 --
 -- Estrutura para view `produtos_por_usuario`
 --
 DROP TABLE IF EXISTS `produtos_por_usuario`;
 
-CREATE ALGORITHM=UNDEFINED DEFINER=`id21521125_root`@`%` SQL SECURITY DEFINER VIEW `produtos_por_usuario`  AS SELECT `u`.`id` AS `id`, `u`.`nome` AS `nome`, count(`v`.`id_produto`) AS `quantidade_produtos` FROM (`users` `u` left join `vendas` `v` on(`u`.`id` = `v`.`id_usuario`)) GROUP BY `u`.`id` ;
+CREATE ALGORITHM=UNDEFINED SQL SECURITY DEFINER VIEW `produtos_por_usuario`  AS SELECT `u`.`id` AS `id`, `u`.`nome` AS `nome`, count(`v`.`id_produto`) AS `quantidade_produtos` FROM (`users` `u` left join `vendas` `v` on(`u`.`id` = `v`.`id_usuario`)) GROUP BY `u`.`id` ;
 
 --
 -- Índices para tabelas despejadas
@@ -509,7 +551,6 @@ ALTER TABLE `log_produtos`
 --
 ALTER TABLE `log_users`
   ADD PRIMARY KEY (`logid`),
-  ADD UNIQUE KEY `email` (`email`),
   ADD KEY `log_usuario_ibfk_1` (`perfilid`);
 
 --
@@ -561,13 +602,13 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT de tabela `endereco`
 --
 ALTER TABLE `endereco`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=39;
 
 --
 -- AUTO_INCREMENT de tabela `log_endereco`
 --
 ALTER TABLE `log_endereco`
-  MODIFY `logid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `logid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT de tabela `log_perfil`
@@ -579,7 +620,7 @@ ALTER TABLE `log_perfil`
 -- AUTO_INCREMENT de tabela `log_perfil_permissoes`
 --
 ALTER TABLE `log_perfil_permissoes`
-  MODIFY `logid` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `logid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT de tabela `log_permissoes`
@@ -597,7 +638,7 @@ ALTER TABLE `log_produtos`
 -- AUTO_INCREMENT de tabela `log_users`
 --
 ALTER TABLE `log_users`
-  MODIFY `logid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `logid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT de tabela `log_vendas`
@@ -627,7 +668,7 @@ ALTER TABLE `produtos`
 -- AUTO_INCREMENT de tabela `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;
 
 --
 -- Restrições para tabelas despejadas
