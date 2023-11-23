@@ -38,7 +38,7 @@ function loginUser() {
             alert('Login Bem Sucedido')
             window.location.href="MenuPrincipal.html";
         }else{
-            alert("Erro: " + data.error);
+            alert("Email ou Senha Incorretos");
         } 
        
     })
